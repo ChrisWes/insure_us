@@ -18,11 +18,30 @@ from datetime import date, datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 
 import requests
+from bs4 import BeautifulSoup
+from rapidfuzz import fuzz
 
 EDGAR_BASE        = "https://data.sec.gov"
 SEC_ARCHIVES      = "https://www.sec.gov/Archives/edgar/data"
 EDGAR_EFTS        = "https://efts.sec.gov/LATEST/search-index"
+EDGAR_COMPANY_SEARCH = "https://www.sec.gov/cgi-bin/browse-edgar"
 EDGAR_MAX_RETRIES = 3
+
+# Insurance-sector SIC codes — used to filter EDGAR company search results
+# to firms actually relevant to the monitor.
+INSURANCE_SIC_CODES: Dict[str, str] = {
+    "6311": "Life Insurance",
+    "6321": "Accident & Health Insurance",
+    "6331": "Fire, Marine & Casualty Insurance",
+    "6351": "Surety Insurance",
+    "6361": "Title Insurance",
+    "6371": "Pension, Health & Welfare Funds",
+    "6399": "Insurance Carriers NEC",
+    "6411": "Insurance Agents, Brokers & Services",
+}
+
+# Minimum fuzzy match score (0-100) to accept an EDGAR company name hit
+EDGAR_NAME_MATCH_THRESHOLD = 72
 
 # SEC fair-use: identify your organisation in User-Agent.
 # Set via EDGAR_USER_AGENT env var or pass to build_edgar_session().
@@ -457,3 +476,111 @@ def fetch_current_officers(
 
     logger.info("  Parsed %d officer(s) from %s (%s)", len(officers), target_form, target_date)
     return officers[:30]  # cap to avoid noise
+
+
+# ---------------------------------------------------------------------------
+# COMPANY NAME LOOKUP (used by discovery monitor for auto-CIK resolution)
+# ---------------------------------------------------------------------------
+
+def _sic_to_company_type(sic: str) -> str:
+    """Map a SIC code to a human-readable company type for firms.csv."""
+    if sic in ("6411",):
+        return "MGA/Broker"
+    if sic in INSURANCE_SIC_CODES:
+        return "Carrier"
+    return "Unknown"
+
+
+def lookup_firm_on_edgar(
+    firm_name: str,
+    session: requests.Session,
+    limiter: RateLimiter,
+    logger: logging.Logger,
+    require_insurance_sic: bool = True,
+) -> Optional[Dict]:
+    """Search EDGAR's company database by name and return the best matching firm.
+
+    Parses the HTML company search results page. Returns a dict with:
+        cik, company_name, sic, sic_description, company_type, match_score, is_insurance
+    Returns None if no confident match found or if require_insurance_sic is True
+    and the best match is not in an insurance SIC category.
+
+    Uses fuzzy matching so "Chubb Ltd" will match "CHUBB LIMITED" in EDGAR.
+    """
+    params = {
+        "company":     firm_name,
+        "CIK":         "",
+        "type":        "8-K",
+        "dateb":       "",
+        "owner":       "include",
+        "count":       "20",
+        "search_text": "",
+        "action":      "getcompany",
+    }
+
+    limiter.wait()
+    try:
+        resp = session.get(EDGAR_COMPANY_SEARCH, params=params, timeout=(5, 20),
+                           headers={"Accept": "text/html,*/*"})
+    except requests.RequestException as exc:
+        logger.warning("  EDGAR company search failed for '%s': %s", firm_name, exc)
+        return None
+
+    if resp.status_code != 200:
+        logger.warning("  EDGAR company search HTTP %d for '%s'", resp.status_code, firm_name)
+        return None
+
+    soup = BeautifulSoup(resp.text, "lxml")
+    table = soup.find("table", class_="tableFile2")
+    if not table:
+        logger.debug("  EDGAR: no results table for '%s'", firm_name)
+        return None
+
+    candidates: List[Dict] = []
+    for row in table.find_all("tr")[1:]:  # skip header row
+        cols = row.find_all("td")
+        if len(cols) < 4:
+            continue
+        raw_cik     = cols[0].get_text(strip=True)
+        company_txt = cols[1].get_text(strip=True)
+        sic_txt     = cols[3].get_text(strip=True) if len(cols) > 3 else ""
+        if not raw_cik or not company_txt:
+            continue
+        candidates.append({
+            "cik":          raw_cik.lstrip("0").zfill(10),
+            "company_name": company_txt,
+            "sic":          sic_txt,
+        })
+
+    if not candidates:
+        return None
+
+    # Rank by fuzzy name similarity
+    best_score  = 0
+    best_result = None
+    for c in candidates:
+        score = fuzz.token_set_ratio(firm_name.lower(), c["company_name"].lower())
+        if score > best_score:
+            best_score  = score
+            best_result = c
+
+    if best_score < EDGAR_NAME_MATCH_THRESHOLD or best_result is None:
+        logger.debug("  EDGAR: best match for '%s' was '%s' (score %d) — below threshold",
+                     firm_name, best_result["company_name"] if best_result else "none", best_score)
+        return None
+
+    is_insurance = best_result["sic"] in INSURANCE_SIC_CODES
+    if require_insurance_sic and not is_insurance:
+        logger.debug("  EDGAR: '%s' matched '%s' but SIC %s is not insurance — skipping",
+                     firm_name, best_result["company_name"], best_result["sic"])
+        return None
+
+    return {
+        "cik":             best_result["cik"],
+        "company_name":    best_result["company_name"],
+        "sic":             best_result["sic"],
+        "sic_description": INSURANCE_SIC_CODES.get(best_result["sic"], best_result["sic"]),
+        "company_type":    _sic_to_company_type(best_result["sic"]),
+        "match_score":     best_score,
+        "is_insurance":    is_insurance,
+    }

@@ -6,8 +6,9 @@ may be new prospects, based on funding, acquisition, appointment, or
 transformation events. Runs independently on a weekly schedule.
 
 Produces:
-  output/discovery_YYYY_WW.csv          -- all triggered articles
+  output/discovery_YYYY_WW.csv           -- all triggered articles
   output/discovery_new_firms_YYYY_WW.csv -- unknown firms only, for seed list review
+  input/pending_firms.csv                -- EDGAR-confirmed new firms awaiting promotion
   Weekly email digest
 """
 
@@ -31,6 +32,8 @@ import feedparser
 import requests
 from dotenv import load_dotenv
 from rapidfuzz import fuzz
+
+from edgar_client import RateLimiter, build_edgar_session, lookup_firm_on_edgar
 
 # ---------------------------------------------------------------------------
 # FEEDS — US insurance and InsurTech trade press
@@ -99,6 +102,7 @@ OUTPUT_DIR = SCRIPT_DIR / "output"
 LOGS_DIR   = SCRIPT_DIR / "logs"
 
 FIRMS_CSV         = INPUT_DIR / "firms.csv"
+PENDING_FIRMS_CSV = INPUT_DIR / "pending_firms.csv"
 DISCOVERY_DB_PATH = DATA_DIR / "discovery_baseline.db"
 
 TODAY    = date.today()
@@ -116,6 +120,17 @@ DIGEST_COLUMNS = [
     "trigger_keywords", "extracted_firm_name", "known_firm",
     "cik", "suggested_action",
 ]
+
+# Columns for pending_firms.csv — mirrors firms.csv plus discovery metadata.
+# To promote a firm: copy the first 7 columns into firms.csv and delete the row here.
+PENDING_COLUMNS = [
+    "Company Name", "CIK", "NAIC Code", "Ticker", "Company Type",
+    "monitoring_status", "notes",
+    "discovered_date", "discovery_source", "edgar_match_score",
+]
+
+# EDGAR rate limit — shared with intelligence_monitor but discovery runs separately
+EDGAR_REQUESTS_PER_SECOND = 5  # conservative for discovery (no urgency)
 
 
 # ---------------------------------------------------------------------------
@@ -195,6 +210,82 @@ def mark_articles_included(conn: sqlite3.Connection, ids: List[int]) -> None:
         f"UPDATE discovery_articles SET included_in_digest = 1 WHERE id IN ({placeholders})",
         ids,
     )
+
+
+# ---------------------------------------------------------------------------
+# PENDING FIRMS CSV
+# ---------------------------------------------------------------------------
+
+def load_pending_firms() -> Dict[str, Dict]:
+    """Return existing pending_firms.csv keyed by CIK (to avoid duplicates)."""
+    if not PENDING_FIRMS_CSV.exists():
+        return {}
+    pending: Dict[str, Dict] = {}
+    with PENDING_FIRMS_CSV.open(encoding="utf-8-sig") as fh:
+        for row in csv.DictReader(fh):
+            cik = row.get("CIK", "").strip()
+            if cik:
+                pending[cik] = row
+    return pending
+
+
+def load_monitored_ciks() -> set:
+    """Return all CIKs already in firms.csv (to avoid re-surfacing known firms)."""
+    if not FIRMS_CSV.exists():
+        return set()
+    ciks = set()
+    with FIRMS_CSV.open(encoding="utf-8-sig") as fh:
+        for row in csv.DictReader(fh):
+            cik = row.get("CIK", "").strip()
+            if cik:
+                ciks.add(cik)
+    return ciks
+
+
+def append_pending_firm(edgar_result: Dict, discovered_date: str,
+                        source_article: str, logger: logging.Logger) -> bool:
+    """Add a new firm to pending_firms.csv if not already present. Returns True if added."""
+    cik = edgar_result["cik"]
+    existing = load_pending_firms()
+    monitored = load_monitored_ciks()
+
+    if cik in monitored:
+        logger.debug("  Pending: CIK %s already monitored — skipping", cik)
+        return False
+    if cik in existing:
+        logger.debug("  Pending: CIK %s already pending — skipping", cik)
+        return False
+
+    write_header = not PENDING_FIRMS_CSV.exists()
+    with PENDING_FIRMS_CSV.open("a", newline="", encoding="utf-8-sig") as fh:
+        writer = csv.DictWriter(fh, fieldnames=PENDING_COLUMNS, extrasaction="ignore")
+        if write_header:
+            writer.writeheader()
+        writer.writerow({
+            "Company Name":       edgar_result["company_name"],
+            "CIK":                cik,
+            "NAIC Code":          "",
+            "Ticker":             "",
+            "Company Type":       edgar_result["company_type"],
+            "monitoring_status":  "pending",
+            "notes":              edgar_result["sic_description"],
+            "discovered_date":    discovered_date,
+            "discovery_source":   source_article[:120],
+            "edgar_match_score":  edgar_result["match_score"],
+        })
+
+    logger.info("  PENDING: added %s (CIK %s, SIC %s, score %d)",
+                edgar_result["company_name"], cik,
+                edgar_result["sic"], edgar_result["match_score"])
+    return True
+
+
+def load_all_pending() -> List[Dict]:
+    """Return all rows from pending_firms.csv."""
+    if not PENDING_FIRMS_CSV.exists():
+        return []
+    with PENDING_FIRMS_CSV.open(encoding="utf-8-sig") as fh:
+        return list(csv.DictReader(fh))
 
 
 # ---------------------------------------------------------------------------
@@ -365,6 +456,7 @@ def send_weekly_email(
     stats: Dict,
     all_rows: List[Dict],
     new_rows: List[Dict],
+    pending_firms: List[Dict],
     logger: logging.Logger,
 ) -> None:
     smtp_host = os.getenv("SMTP_HOST", "").strip()
@@ -383,25 +475,54 @@ def send_weekly_email(
 
     recipients   = [a.strip() for a in email_to_raw.split(",") if a.strip()]
     known_rows   = [r for r in all_rows if r["known_firm"] == "Yes"]
+    new_pending  = [p for p in pending_firms if p.get("discovered_date") == TODAY.isoformat()]
     subject      = (
         f"US Discovery Report: {len(new_rows)} new firm(s), "
-        f"{len(known_rows)} known firm event(s) — {WEEK_STR}"
+        f"{len(known_rows)} known firm event(s)"
+        + (f", {len(new_pending)} auto-resolved" if new_pending else "")
+        + f" — {WEEK_STR}"
     )
 
     lines = [
         f"US DISCOVERY REPORT — Week {WEEK}, {YEAR}",
         "=" * 60,
         f"NEW FIRMS IDENTIFIED      : {stats['new_firms']}",
+        f"  - EDGAR auto-resolved   : {stats['edgar_resolved']}",
+        f"  - Needs manual lookup   : {stats['new_firms'] - stats['edgar_resolved']}",
         f"KNOWN FIRMS WITH ACTIVITY : {stats['known_firms']}",
         f"FEEDS MONITORED           : {stats['feeds_fetched']}",
         f"FEEDS FAILED              : {stats['feeds_failed']}",
         f"ARTICLES REVIEWED         : {stats['articles_reviewed']}",
         f"ARTICLES TRIGGERED        : {stats['articles_triggered']}",
+        f"TOTAL PENDING FIRMS       : {len(pending_firms)}",
         "",
     ]
 
+    if new_pending:
+        lines.append("AUTO-RESOLVED THIS WEEK (added to pending_firms.csv)")
+        lines.append("-" * 60)
+        lines.append("To add to monitoring: copy these rows into input/firms.csv")
+        lines.append("")
+        for p in new_pending:
+            lines.append(
+                f"  {p['Company Name']}  |  CIK: {p['CIK']}  |  {p['notes']}  "
+                f"|  match score: {p['edgar_match_score']}"
+            )
+            lines.append(f"  Source: {p['discovery_source']}")
+            lines.append("")
+
+    if len(pending_firms) > len(new_pending):
+        older = [p for p in pending_firms if p.get("discovered_date") != TODAY.isoformat()]
+        lines.append(f"PREVIOUSLY PENDING ({len(older)} firm(s) still awaiting review)")
+        lines.append("-" * 60)
+        for p in older[:10]:
+            lines.append(f"  {p['Company Name']}  |  CIK: {p['CIK']}  |  discovered {p['discovered_date']}")
+        if len(older) > 10:
+            lines.append(f"  ... and {len(older) - 10} more in pending_firms.csv")
+        lines.append("")
+
     if new_rows:
-        lines.append("NEW FIRMS FOR REVIEW")
+        lines.append("NEW FIRMS (no EDGAR match — manual review)")
         lines.append("-" * 60)
         for r in new_rows:
             firm = r["extracted_firm_name"] or "(firm not identified)"
@@ -412,7 +533,7 @@ def send_weekly_email(
             lines.append(f"  {r['article_url']}")
             lines.append("")
     else:
-        lines.append("No new firms identified this week.")
+        lines.append("No unresolved new firms this week.")
         lines.append("")
 
     if known_rows:
@@ -436,7 +557,7 @@ def send_weekly_email(
     msg["Subject"] = subject
     msg.attach(MIMEText(body, "plain"))
 
-    for path in (DISCOVERY_DIGEST, DISCOVERY_NEW_FIRMS_DIGEST):
+    for path in (DISCOVERY_DIGEST, DISCOVERY_NEW_FIRMS_DIGEST, PENDING_FIRMS_CSV):
         if path.exists():
             with path.open("rb") as fh:
                 part = MIMEBase("application", "octet-stream")
@@ -486,11 +607,18 @@ def main() -> None:
     conn.row_factory = sqlite3.Row
     init_discovery_db(conn)
 
-    session = requests.Session()
-    session.headers.update({
+    rss_session = requests.Session()
+    rss_session.headers.update({
         "User-Agent": "Mozilla/5.0 (compatible; insure-us-discovery/1.0)",
         "Accept":     "application/rss+xml, application/atom+xml, text/xml, */*",
     })
+
+    edgar_user_agent = os.getenv(
+        "EDGAR_USER_AGENT",
+        f"InsureMonitorUS {os.getenv('EMAIL_FROM', 'contact@example.com')}"
+    )
+    edgar_session = build_edgar_session(edgar_user_agent)
+    edgar_limiter = RateLimiter(EDGAR_REQUESTS_PER_SECOND)
 
     digest_already_produced = DISCOVERY_DIGEST.exists()
     if digest_already_produced:
@@ -502,12 +630,14 @@ def main() -> None:
     articles_triggered = 0
     new_firm_count     = 0
     known_firm_count   = 0
+    # Collect unique new firm names seen this run for EDGAR lookup
+    new_firm_candidates: Dict[str, str] = {}   # firm_name -> source article title
     ts = datetime.now().isoformat()
 
     for feed in FEEDS:
         name    = feed["name"]
         url     = feed["url"]
-        entries = fetch_feed(name, url, session, logger)
+        entries = fetch_feed(name, url, rss_session, logger)
 
         if not entries:
             feeds_failed += 1
@@ -541,6 +671,8 @@ def main() -> None:
                 new_firm_count += 1
                 logger.info("  TRIGGER [%s] new firm candidate: %s — %s",
                             name, firm_name or "(unknown)", ", ".join(keywords))
+                if firm_name and firm_name not in new_firm_candidates:
+                    new_firm_candidates[firm_name] = title
 
             article = {
                 "feed_name":           name,
@@ -560,6 +692,26 @@ def main() -> None:
 
     conn.commit()
 
+    # -------------------------------------------------------------------------
+    # EDGAR AUTO-RESOLUTION: look up each new firm candidate by name
+    # -------------------------------------------------------------------------
+    edgar_resolved = 0
+    if new_firm_candidates:
+        logger.info("EDGAR lookup for %d new firm candidate(s)...", len(new_firm_candidates))
+        for firm_name, source_title in new_firm_candidates.items():
+            result = lookup_firm_on_edgar(firm_name, edgar_session, edgar_limiter, logger)
+            if result:
+                added = append_pending_firm(result, TODAY.isoformat(), source_title, logger)
+                if added:
+                    edgar_resolved += 1
+            else:
+                logger.debug("  No EDGAR match for '%s'", firm_name)
+        logger.info("EDGAR resolved %d / %d new firm(s)", edgar_resolved, len(new_firm_candidates))
+    else:
+        logger.info("No new firm candidates to look up on EDGAR")
+
+    pending_firms = load_all_pending()
+
     if not digest_already_produced:
         undigested = get_undigested_articles(conn)
         if undigested:
@@ -571,15 +723,25 @@ def main() -> None:
             logger.info("No undigested articles — writing empty digests")
             write_discovery_digests([], logger)
 
+        # Filter new_rows to only those without an EDGAR match (pending firms
+        # are already captured in pending_firms.csv, no need to repeat them)
+        pending_names = {p["Company Name"].lower() for p in pending_firms
+                        if p.get("discovered_date") == TODAY.isoformat()}
+        unresolved_new = [
+            r for r in new_rows
+            if (r.get("extracted_firm_name") or "").lower() not in pending_names
+        ]
+
         stats = {
             "feeds_fetched":      feeds_fetched,
             "feeds_failed":       feeds_failed,
             "articles_reviewed":  articles_reviewed,
             "articles_triggered": articles_triggered,
             "new_firms":          len(new_rows),
+            "edgar_resolved":     edgar_resolved,
             "known_firms":        len(all_rows) - len(new_rows),
         }
-        send_weekly_email(stats, all_rows, new_rows, logger)
+        send_weekly_email(stats, all_rows, unresolved_new, pending_firms, logger)
     else:
         stats = {
             "feeds_fetched":      feeds_fetched,
@@ -587,6 +749,7 @@ def main() -> None:
             "articles_reviewed":  articles_reviewed,
             "articles_triggered": articles_triggered,
             "new_firms":          new_firm_count,
+            "edgar_resolved":     edgar_resolved,
             "known_firms":        known_firm_count,
         }
 
@@ -601,7 +764,9 @@ def main() -> None:
     logger.info("Articles reviewed    : %d", stats["articles_reviewed"])
     logger.info("Articles triggered   : %d", stats["articles_triggered"])
     logger.info("New firm candidates  : %d", stats["new_firms"])
+    logger.info("  EDGAR resolved     : %d", stats["edgar_resolved"])
     logger.info("Known firm events    : %d", stats["known_firms"])
+    logger.info("Total pending firms  : %d", len(pending_firms))
     logger.info("=" * 60)
 
 
