@@ -1,0 +1,48 @@
+name: US Discovery Monitor
+
+on:
+  schedule:
+    - cron: '0 5 * * 1'   # 05:00 UTC every Monday
+  workflow_dispatch:        # allows manual run from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  discovery:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create directories
+        run: mkdir -p data output logs
+
+      - name: Run discovery monitor
+        env:
+          SMTP_HOST:     ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:     ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM:    ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:      ${{ secrets.EMAIL_TO }}
+        run: python discovery_monitor.py
+
+      - name: Commit updated baseline and outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/discovery_baseline.db output/
+          git diff --staged --quiet || git commit -m "US discovery monitor run $(date -I)"
+          git pull --rebase -X theirs origin main
+          git push

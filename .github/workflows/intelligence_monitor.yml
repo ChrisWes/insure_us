@@ -1,0 +1,54 @@
+name: US Intelligence Monitor
+
+on:
+  schedule:
+    - cron: '0 4 * * *'   # 04:00 UTC daily (midnight ET)
+  workflow_dispatch:        # allows manual run from the Actions tab
+
+permissions:
+  contents: write           # needed to commit updated databases back
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create directories
+        run: mkdir -p data output logs
+
+      - name: Run intelligence monitor
+        env:
+          EDGAR_USER_AGENT:  ${{ secrets.EDGAR_USER_AGENT }}
+          ADZUNA_APP_ID:     ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY:    ${{ secrets.ADZUNA_APP_KEY }}
+          NEWS_API_KEY:      ${{ secrets.NEWS_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SMTP_HOST:         ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:         ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME:     ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD:     ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM:        ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:          ${{ secrets.EMAIL_TO }}
+        run: python intelligence_monitor.py
+
+      - name: Commit updated baselines and outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/officer_baseline.db data/jobs_baseline.db data/director_intelligence.db output/
+          git diff --staged --quiet || git commit -m "US intelligence monitor run $(date -I)"
+          # Pull with rebase to handle any concurrent DB commits, then push
+          git pull --rebase -X theirs origin main
+          git push
