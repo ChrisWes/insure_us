@@ -61,15 +61,27 @@ TRIGGER_KEYWORDS = [
     # Funding and capital events
     "raises", "funding round", "series A", "series B", "series C",
     "seed funding", "venture capital", "growth capital", "private equity",
+    "backed by", "investment",
     # M&A and structural events
-    "acquires", "acquisition", "merger", "management buyout", "buys",
-    # People and strategy signals
-    "appoints", "appointed", "strategic review", "names new",
+    "acquires", "acquisition", "merger", "buyout", "buys", "purchased",
+    "combines with", "joins forces", "partnership", "joint venture",
+    # People signals — US trade press uses these heavily
+    "appoints", "appointed", "names", "hires", "joins as",
+    "promoted to", "elected", "steps down", "resigns", "departure",
+    "chief executive", "chief financial", "chief technology", "chief information",
+    "chief operating", "chief underwriting", "chief actuary",
+    "president", "chairman",
     # Sector-specific
-    "insurtech", "insuretech", "MGA", "program business",
-    # Transformation signals
+    "insurtech", "insuretech", "MGA", "managing general",
+    "program business", "admitted", "surplus lines", "Lloyd's",
+    "reinsurance", "captive", "parametric",
+    # Transformation and technology signals
     "digital transformation", "technology platform", "core system",
-    "modernization", "modernisation", "legacy replacement", "cloud migration",
+    "modernization", "legacy replacement", "cloud", "AI", "artificial intelligence",
+    "data analytics", "automation", "policy administration",
+    # Regulatory and market events
+    "license", "approved", "regulatory", "rate filing", "market exit",
+    "expansion", "enters", "launches",
 ]
 
 # ---------------------------------------------------------------------------
