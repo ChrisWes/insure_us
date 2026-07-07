@@ -477,7 +477,7 @@ def send_weekly_email(
     known_rows   = [r for r in all_rows if r["known_firm"] == "Yes"]
     new_pending  = [p for p in pending_firms if p.get("discovered_date") == TODAY.isoformat()]
     subject      = (
-        f"US Discovery Report: {len(new_rows)} new firm(s), "
+        f"US | Discovery Report: {len(new_rows)} new firm(s), "
         f"{len(known_rows)} known firm event(s)"
         + (f", {len(new_pending)} auto-resolved" if new_pending else "")
         + f" — {WEEK_STR}"
