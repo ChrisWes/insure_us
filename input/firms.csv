@@ -2,7 +2,7 @@ Company Name,CIK,NAIC Code,Ticker,Company Type,monitoring_status,notes
 AIG (American International Group),0000005272,19380,AIG,Carrier,active,
 Chubb Limited,0000896159,12777,CB,Carrier,active,
 The Hartford Financial Services,0000874766,29424,HIG,Carrier,active,
-Travelers Companies,0000086312,25658,TRV,Carrier,active,
+The Travelers Companies,0000086312,25658,TRV,Carrier,active,Search as "The Travelers" to avoid travel nurse noise on Adzuna
 MetLife,0000037808,65978,MET,Carrier,active,
 Prudential Financial,0001137774,68241,PRU,Carrier,active,
 Markel Group,0001096343,38970,MKL,Carrier/MGA,active,

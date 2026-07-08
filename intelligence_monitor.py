@@ -84,7 +84,7 @@ ADZUNA_WHERE            = "New York, NY"
 ADZUNA_RESULTS_PER_PAGE = 50
 ADZUNA_MAX_PER_MINUTE   = 100
 ADZUNA_MAX_PAGES        = 10
-COMPANY_MATCH_THRESHOLD = 80
+COMPANY_MATCH_THRESHOLD = 72
 SHORT_LIVED_DAYS        = 30
 MULTI_POSTING_THRESHOLD = 3
 
@@ -402,23 +402,33 @@ def upsert_news_firm(conn, cik, name, ts):
 # ADZUNA  (US endpoint; identical logic to UK version)
 # ---------------------------------------------------------------------------
 _STRIP_FOR_ADZUNA = re.compile(
-    r"\b(limited|ltd|llp|plc|lp|inc|the|insurance|reinsurance|underwriters|underwriting|"
-    r"syndicate|syndicates|managing|agency|agent|group|holdings|usa|us|services|"
-    r"financial|life|general|mutual|assurance|society|association|of|and|corp|corporation)\b",
+    r"\b(limited|ltd|llp|plc|lp|inc|the|reinsurance|underwriters|underwriting|"
+    r"syndicate|syndicates|managing|agency|agent|holdings|usa|"
+    r"mutual|assurance|society|association|of|and|corp|corporation)\b",
     re.IGNORECASE,
 )
+# Kept from UK strip list but removed for US: "insurance", "financial", "services",
+# "group", "life", "general", "us" — too many US firms have these as distinctive words
+# (e.g. "Hartford Financial", "Prudential Financial", "MetLife", "Arch Capital Group")
+
 _STRIP_LEGAL_ONLY = re.compile(r"\b(limited|ltd|llp|plc|lp|inc|corp|corporation)\b", re.IGNORECASE)
+_STRIP_PARENS     = re.compile(r"\([^)]*\)")   # strips "(American International Group)" etc.
 _WS = re.compile(r"\s+")
 
 
 def make_search_name(registered_name: str) -> str:
-    cleaned = _WS.sub(" ", _STRIP_FOR_ADZUNA.sub(" ", registered_name)).strip()
+    # Strip parens first so "(American International Group)" doesn't inflate the word count
+    name = _STRIP_PARENS.sub(" ", registered_name)
+    cleaned = _WS.sub(" ", _STRIP_FOR_ADZUNA.sub(" ", name)).strip()
     words = [w for w in cleaned.split() if len(w) > 1]
     return " ".join(words[:2]) if words else registered_name
 
 
 def make_validation_name(registered_name: str) -> str:
-    cleaned = _WS.sub(" ", _STRIP_LEGAL_ONLY.sub(" ", registered_name)).strip()
+    # Strip parenthetical long-form names before fuzzy matching
+    # so "AIG (American International Group)" validates as "AIG" against "AIG Insurance"
+    name = _STRIP_PARENS.sub(" ", registered_name)
+    cleaned = _WS.sub(" ", _STRIP_LEGAL_ONLY.sub(" ", name)).strip()
     return cleaned.lower()
 
 
@@ -478,7 +488,7 @@ def fetch_adzuna_jobs(
         data = resp.json()
         for job in data.get("results", []):
             company_display = job.get("company", {}).get("display_name", "")
-            if fuzz.token_sort_ratio(validation_name, company_display.lower()) < COMPANY_MATCH_THRESHOLD:
+            if fuzz.token_set_ratio(validation_name, company_display.lower()) < COMPANY_MATCH_THRESHOLD:
                 continue
             title = job.get("title", "")
             if not matches_keywords(title, job.get("description", "")):
