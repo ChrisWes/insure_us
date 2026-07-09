@@ -103,9 +103,21 @@ NEWS_LOOKBACK_DAYS  = 30
 NEWS_SLEEP_SECONDS  = 1.0
 
 NEWS_KEYWORDS = [
-    "technology", "digital", "transformation", "system", "platform",
-    "software", "data", "cyber", "acquisition", "merger", "partnership",
-    "investment", "regulatory", "compliance", "appointed", "restructure",
+    # Technology and transformation
+    "technology", "digital", "transformation", "platform", "software",
+    "data", "cyber", "AI", "artificial intelligence", "automation", "cloud",
+    # M&A and corporate events
+    "acquisition", "merger", "acquires", "partnership", "joint venture",
+    "investment", "funding", "capital raise",
+    # People moves — use stem "appoint" to catch both "appoints" and "appointed"
+    "appoint", "hires", "names new", "joins as", "promoted", "steps down",
+    "departure", "resigns", "new CEO", "new CFO", "new CTO", "new president",
+    # Business signals
+    "regulatory", "compliance", "restructure", "restructuring",
+    "earnings", "results", "strategy", "expansion", "launches", "enters",
+    # Insurance-specific
+    "underwriting", "reinsurance", "insurtech", "MGA", "program business",
+    "rate", "loss ratio", "combined ratio",
 ]
 
 # Signal scoring thresholds
@@ -526,8 +538,47 @@ class AdzunaLimiter:
 
 
 # ---------------------------------------------------------------------------
-# NEWS API  (identical to UK version)
+# NEWS API
 # ---------------------------------------------------------------------------
+_NEWS_STRIP_PARENS  = re.compile(r"\([^)]*\)")
+_NEWS_STRIP_LEGAL   = re.compile(
+    r"\b(ltd|llp|plc|lp|inc|corp|corporation|services)\b",
+    re.IGNORECASE,
+)
+_NEWS_STRIP_THE     = re.compile(r"^\s*the\s+", re.IGNORECASE)
+
+
+def make_news_search_name(registered_name: str) -> str:
+    """Produce a clean quoted search term for NewsAPI from the registered firm name.
+
+    Key transforms:
+      "AIG (American International Group)" → "American International"
+        (parenthetical long-form more distinctive than 3-letter abbreviation)
+      "The Hartford Financial Services"     → "Hartford Financial"
+        (strip leading "The" and "Services"; 2-word phrase avoids zero results)
+      "Chubb Limited"                       → "Chubb Limited"
+        (keep "Limited" to distinguish from NFL player Nick Chubb)
+      "The Travelers Companies"             → "Travelers Companies"
+        (keep "Companies" to avoid 2979 travel-noise articles)
+    """
+    # If there's a parenthetical long-form, prefer that (more unique than the abbreviation)
+    paren_match = re.search(r"\(([^)]+)\)", registered_name)
+    if paren_match:
+        name = paren_match.group(1)
+    else:
+        name = registered_name
+
+    # Strip leading "The"
+    name = _NEWS_STRIP_THE.sub("", name).strip()
+    # Strip only pure legal suffixes (not disambiguating words like "Limited", "Companies", "Group")
+    name = _NEWS_STRIP_LEGAL.sub("", name).strip()
+    # Collapse whitespace
+    name = re.sub(r"\s+", " ", name).strip()
+    # Take first 2 words: enough to be specific, avoids over-constraining exact-phrase search
+    words = [w for w in name.split() if len(w) > 1]
+    return " ".join(words[:2]) if words else registered_name
+
+
 def article_matches_keywords(title: str, description: str) -> bool:
     text = f"{title} {description}".lower()
     return any(kw.lower() in text for kw in NEWS_KEYWORDS)
@@ -549,8 +600,8 @@ def fetch_newsapi(
             resp = session.get(
                 NEWS_API_BASE,
                 params={
-                    "apiKey": api_key, "q": f'"{firm_name}"', "language": "en",
-                    "from": from_date, "sortBy": "publishedAt",
+                    "apiKey": api_key, "q": f'"{make_news_search_name(firm_name)}"',
+                    "language": "en", "from": from_date, "sortBy": "publishedAt",
                     "pageSize": NEWS_PAGE_SIZE, "page": page,
                 },
                 timeout=(5, 20),
