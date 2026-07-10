@@ -1,0 +1,65 @@
+﻿Company Name,CIK,NAIC Code,Ticker,Company Type,monitoring_status,notes,hq_city,hq_state,northeast_hq,northeast_jobs,tech_jobs_ne,verdict,qualification_notes
+ARCH CAPITAL GROUP LTD.,0000947484,,ACGLO,Carrier,active,"Fire, Marine & Casualty Insurance",Pembroke,D0,N,22,4,Recommend,4 tech role(s) in NE (HQ D0)
+Ategrity Specialty Insurance Co Holdings,0002040491,,ASIC,Carrier,active,"Fire, Marine & Casualty Insurance",New York,NY,Y,0,0,Recommend,NE HQ (NY); no NE tech postings on Adzuna
+Bowhead Specialty Holdings Inc.,0002002473,,BOW,Carrier,active,"Fire, Marine & Casualty Insurance",New York,NY,Y,0,0,Recommend,NE HQ (NY); no NE tech postings on Adzuna
+ERIE INDEMNITY CO,0000922621,,ERIE,MGA/Broker,active,"Insurance Agents, Brokers & Services",Erie,PA,Y,0,0,Recommend,NE HQ (PA); no NE tech postings on Adzuna
+"Equitable Holdings, Inc.",0001333986,,EQH-PC,MGA/Broker,active,"Insurance Agents, Brokers & Services",New York,NY,Y,0,0,Recommend,NE HQ (NY); no NE tech postings on Adzuna
+Kepler Group Ltd,0002000208,,KPL,MGA/Broker,active,"Insurance Agents, Brokers & Services","Harbour City, Tsim Sha Tsui",K3,N,34,4,Recommend,4 tech role(s) in NE (HQ K3)
+"MARSH & MCLENNAN COMPANIES, INC.",0000062709,,MRSH,MGA/Broker,active,"Insurance Agents, Brokers & Services",New York,NY,Y,2,0,Recommend,NE HQ (NY); no NE tech postings on Adzuna
+MBIA INC,0000814585,,MBI,Carrier,active,Surety Insurance,Purchase,NY,Y,0,0,Recommend,NE HQ (NY); no NE tech postings on Adzuna
+OCTAVE SPECIALTY GROUP INC,0000874501,,OSG,Carrier,active,Surety Insurance,New York,NY,Y,0,0,Recommend,NE HQ (NY); no NE tech postings on Adzuna
+RADIAN GROUP INC,0000890926,,RDN,Carrier,active,Surety Insurance,Wayne,PA,Y,9,1,Recommend,NE HQ (PA) + 1 tech role(s) in NE
+"Reliance Global Group, Inc.",0001812727,,EZRA,MGA/Broker,active,"Insurance Agents, Brokers & Services",Lakewood,NJ,Y,0,0,Recommend,NE HQ (NJ); no NE tech postings on Adzuna
+AFLAC INC,0000004977,,AFL,Carrier,active,Accident & Health Insurance,Columbus,GA,N,5,0,Review,5 job(s) in NE (no tech titles); HQ GA
+ALLSTATE CORP,0000899051,,ALL-PJ,Carrier,active,"Fire, Marine & Casualty Insurance",Northbrook,IL,N,2,0,Review,2 job(s) in NE (no tech titles); HQ IL
+AMERICAN FINANCIAL GROUP INC,0001042046,,AFGE,Carrier,active,"Fire, Marine & Casualty Insurance",Cincinnati,OH,N,2,0,Review,2 job(s) in NE (no tech titles); HQ OH
+AMERISAFE INC,0001018979,,AMSF,Carrier,active,"Fire, Marine & Casualty Insurance",Deridder,LA,N,1,0,Review,1 job in NE; HQ LA
+ASSURED GUARANTY LTD,0001273813,,AGO,Carrier,active,Surety Insurance,Hamilton Bermuda,D0,N,3,1,Review,1 tech role(s) in NE; HQ D0
+AXIS CAPITAL HOLDINGS LTD,0001214816,,AXS-PE,Carrier,active,"Fire, Marine & Casualty Insurance",Pembroke,,N,6,0,Review,6 job(s) in NE (no tech titles); HQ unknown
+BERKSHIRE HATHAWAY INC,0001067983,,BRK-A,Carrier,active,"Fire, Marine & Casualty Insurance",Omaha,NE,N,13,1,Review,1 tech role(s) in NE; HQ NE
+Brookfield Wealth Solutions Ltd.,0001837429,,BNT,Carrier,active,Insurance Carriers NEC,Pembroke,D0,N,5,0,Review,5 job(s) in NE (no tech titles); HQ D0
+"CITIZENS, INC.",0000024090,,CIA,Carrier,active,Life Insurance,Austin,TX,N,45,0,Review,45 job(s) in NE (no tech titles); HQ TX
+"CNO Financial Group, Inc.",0001224608,,CNO-PA,Carrier,active,Accident & Health Insurance,Carmel,IN,N,1,0,Review,1 job in NE; HQ IN
+CORVEL CORP,0000874866,,CRVL,MGA/Broker,active,"Insurance Agents, Brokers & Services",Portland,OR,N,8,0,Review,8 job(s) in NE (no tech titles); HQ OR
+"Corebridge Financial, Inc.",0001889539,,CRBD,Carrier,active,Life Insurance,Houston,TX,N,1,0,Review,1 job in NE; HQ TX
+First American Financial Corp,0001472787,,FAF,Carrier,active,Title Insurance,Santa Ana,CA,N,3,0,Review,3 job(s) in NE (no tech titles); HQ CA
+STEWART INFORMATION SERVICES CORP,0000094344,,STC,Carrier,active,Title Insurance,Houston,TX,N,1,0,Review,1 job in NE; HQ TX
+AEGON LTD.,0000769218,,AEFC,Carrier,active,Life Insurance,Schiphol,,N,0,0,Skip,No NE address or jobs detected
+AIFU Inc.,0001413855,,AIFU,MGA/Broker,active,"Insurance Agents, Brokers & Services",Shenzhen,,N,0,0,Skip,No NE address or jobs detected
+AMERICAN COASTAL INSURANCE Corp,0001401521,,ACIC,Carrier,active,"Fire, Marine & Casualty Insurance",Saint Petersburg,FL,N,0,0,Skip,HQ FL; no NE jobs found
+ASPEN INSURANCE HOLDINGS LTD,0001267395,,AHL-PF,Carrier,active,"Fire, Marine & Casualty Insurance",Hamilton,D0,N,0,0,Skip,HQ D0; no NE jobs found
+ATLANTIC AMERICAN CORP,0000008177,,AAME,Carrier,active,Life Insurance,Atlanta,GA,N,0,0,Skip,HQ GA; no NE jobs found
+Accelerant Holdings,0001997350,,ARX,MGA/Broker,active,"Insurance Agents, Brokers & Services",Grand Cayman,E9,N,0,0,Skip,HQ E9; no NE jobs found
+"American Integrity Insurance Group, Inc.",0002007587,,AII,Carrier,active,"Fire, Marine & Casualty Insurance",Tampa,FL,N,0,0,Skip,HQ FL; no NE jobs found
+American National Group Inc.,0001039828,,ANG-PD,Carrier,active,Life Insurance,West Demoines,IA,N,0,0,Skip,HQ IA; no NE jobs found
+Aon plc,0000315293,,AON,MGA/Broker,active,"Insurance Agents, Brokers & Services",Dublin 2,L2,N,0,0,Skip,HQ L2; no NE jobs found
+"Apple iSports Group, Inc.",0001134982,,AAPI,MGA/Broker,active,"Insurance Agents, Brokers & Services",Irvine,CA,N,0,0,Skip,HQ CA; no NE jobs found
+Arthur J. Gallagher & Co.,0000354190,,AJG,MGA/Broker,active,"Insurance Agents, Brokers & Services",Rolling Meadows,IL,N,0,0,Skip,HQ IL; no NE jobs found
+Athene Holding Ltd.,0001527469,,ATHS,Carrier,active,Life Insurance,West Des Moines,IA,N,0,0,Skip,HQ IA; no NE jobs found
+"BROWN & BROWN, INC.",0000079282,,BRO,MGA/Broker,active,"Insurance Agents, Brokers & Services",Daytona Beach,FL,N,0,0,Skip,HQ FL; no NE jobs found
+"Baldwin Insurance Group, Inc.",0001781755,,BWIN,MGA/Broker,active,"Insurance Agents, Brokers & Services",Tampa,FL,N,0,0,Skip,HQ FL; no NE jobs found
+"Brighthouse Financial, Inc.",0001685040,,BHFAP,Carrier,active,Life Insurance,Charlotte,NC,N,0,0,Skip,HQ NC; no NE jobs found
+CHINA LIFE INSURANCE CO LTD,0001268896,,CILFY,Carrier,active,Life Insurance,Beijing,F4,N,0,0,Skip,HQ F4; no NE jobs found
+CRAWFORD & CO,0000025475,,CRD-B,MGA/Broker,active,"Insurance Agents, Brokers & Services",Peachtree Corners,GA,N,0,0,Skip,HQ GA; no NE jobs found
+Cheche Group Inc.,0001965473,,CCGWW,MGA/Broker,active,"Insurance Agents, Brokers & Services",Beijing,F4,N,0,0,Skip,HQ F4; no NE jobs found
+"Enact Holdings, Inc.",0001823529,,ACT,MGA/Broker,active,"Insurance Agents, Brokers & Services",Raleigh,NC,N,0,0,Skip,HQ NC; no NE jobs found
+Essent Group Ltd.,0001448893,,ESNT,Carrier,active,Surety Insurance,Hamilton,D0,N,0,0,Skip,HQ D0; no NE jobs found
+Ethos Technologies Inc.,0001788451,,LIFE,MGA/Broker,active,"Insurance Agents, Brokers & Services",Austin,TX,N,0,0,Skip,HQ TX; no NE jobs found
+"F&G Annuities & Life, Inc.",0001934850,,FGSN,Carrier,active,Life Insurance,Des Moines,IA,N,0,0,Skip,HQ IA; no NE jobs found
+"Fidelity National Financial, Inc.",0001331875,,FNF,Carrier,active,Title Insurance,Jacksonville,FL,N,0,0,Skip,HQ FL; no NE jobs found
+"GoHealth, Inc.",0001808220,,GOCOQ,MGA/Broker,active,"Insurance Agents, Brokers & Services",Chicago,IL,N,0,0,Skip,HQ IL; no NE jobs found
+"Goosehead Insurance, Inc.",0001726978,,GSHD,MGA/Broker,active,"Insurance Agents, Brokers & Services",Westlake,TX,N,0,0,Skip,HQ TX; no NE jobs found
+"Hagerty, Inc.",0001840776,,HGTY,MGA/Broker,active,"Insurance Agents, Brokers & Services",Traverse City,MI,N,0,0,Skip,HQ MI; no NE jobs found
+"Health In Tech, Inc.",0002019505,,HIT,MGA/Broker,active,"Insurance Agents, Brokers & Services",Stuart,FL,N,0,0,Skip,HQ FL; no NE jobs found
+Huize Holding Ltd,0001778982,,HUIZ,MGA/Broker,active,"Insurance Agents, Brokers & Services",Shenzhen,,N,0,0,Skip,No NE address or jobs detected
+INVESTORS TITLE CO,0000720858,,ITIC,Carrier,active,Title Insurance,Chapel Hill,NC,N,0,0,Skip,HQ NC; no NE jobs found
+International General Insurance Holdings Ltd.,0001794338,,IGIC,Carrier,active,Insurance Carriers NEC,Amman,M2,N,0,0,Skip,HQ M2; no NE jobs found
+MGIC INVESTMENT CORP,0000876437,,MTG,Carrier,active,Surety Insurance,Milwaukee,WI,N,0,0,Skip,HQ WI; no NE jobs found
+"NMI Holdings, Inc.",0001547903,,NMIH,Carrier,active,Surety Insurance,Emeryville,CA,N,0,0,Skip,HQ CA; no NE jobs found
+Neptune Insurance Holdings Inc.,0002067129,,NP,MGA/Broker,active,"Insurance Agents, Brokers & Services",St. Petersburg,FL,N,0,0,Skip,HQ FL; no NE jobs found
+OLD REPUBLIC INTERNATIONAL CORP,0000074260,,ORI,Carrier,active,Surety Insurance,Chicago,IL,N,0,0,Skip,HQ IL; no NE jobs found
+PARTNERRE LTD,0000911421,,PREJF,Carrier,active,Accident & Health Insurance,Pembroke,D0,N,0,0,Skip,HQ D0; no NE jobs found
+PRINCIPAL FINANCIAL GROUP INC,0001126328,,PFG,Carrier,active,Accident & Health Insurance,Des Moines,IA,N,0,0,Skip,HQ IA; no NE jobs found
+QDM International Inc.,0001094032,,QDMI,MGA/Broker,active,"Insurance Agents, Brokers & Services",Kowloon,K3,N,0,0,Skip,HQ K3; no NE jobs found
+Roadzen Inc.,0001868640,,RDZNW,MGA/Broker,active,"Insurance Agents, Brokers & Services",Burlingame,CA,N,0,0,Skip,HQ CA; no NE jobs found
+"eHealth, Inc.",0001333493,,EHTH,MGA/Broker,active,"Insurance Agents, Brokers & Services",Indianapolis,IN,N,0,0,Skip,HQ IN; no NE jobs found
