@@ -1,0 +1,65 @@
+﻿Company Name,CIK,NAIC Code,Ticker,Company Type,monitoring_status,notes,discovered_date,discovery_source,edgar_match_score
+AEGON LTD.,0000769218,,AEFC,Carrier,pending,Life Insurance,2026-07-10,EDGAR SIC 6311 sweep [AEFC],100
+AFLAC INC,0000004977,,AFL,Carrier,pending,Accident & Health Insurance,2026-07-10,EDGAR SIC 6321 sweep [AFL],100
+AIFU Inc.,0001413855,,AIFU,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [AIFU],100
+ALLSTATE CORP,0000899051,,ALL-PJ,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [ALL-PJ],100
+AMERICAN COASTAL INSURANCE Corp,0001401521,,ACIC,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [ACIC],100
+AMERICAN FINANCIAL GROUP INC,0001042046,,AFGE,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [AFGE],100
+AMERISAFE INC,0001018979,,AMSF,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [AMSF],100
+ARCH CAPITAL GROUP LTD.,0000947484,,ACGLO,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [ACGLO],100
+ASPEN INSURANCE HOLDINGS LTD,0001267395,,AHL-PF,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [AHL-PF],100
+ASSURED GUARANTY LTD,0001273813,,AGO,Carrier,pending,Surety Insurance,2026-07-10,EDGAR SIC 6351 sweep [AGO],100
+ATLANTIC AMERICAN CORP,0000008177,,AAME,Carrier,pending,Life Insurance,2026-07-10,EDGAR SIC 6311 sweep [AAME],100
+AXIS CAPITAL HOLDINGS LTD,0001214816,,AXS-PE,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [AXS-PE],100
+Accelerant Holdings,0001997350,,ARX,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [ARX],100
+"American Integrity Insurance Group, Inc.",0002007587,,AII,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [AII],100
+American National Group Inc.,0001039828,,ANG-PD,Carrier,pending,Life Insurance,2026-07-10,EDGAR SIC 6311 sweep [ANG-PD],100
+Aon plc,0000315293,,AON,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [AON],100
+"Apple iSports Group, Inc.",0001134982,,AAPI,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [AAPI],100
+Arthur J. Gallagher & Co.,0000354190,,AJG,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [AJG],100
+Ategrity Specialty Insurance Co Holdings,0002040491,,ASIC,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [ASIC],100
+Athene Holding Ltd.,0001527469,,ATHS,Carrier,pending,Life Insurance,2026-07-10,EDGAR SIC 6311 sweep [ATHS],100
+BERKSHIRE HATHAWAY INC,0001067983,,BRK-A,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [BRK-A],100
+"BROWN & BROWN, INC.",0000079282,,BRO,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [BRO],100
+"Baldwin Insurance Group, Inc.",0001781755,,BWIN,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [BWIN],100
+Bowhead Specialty Holdings Inc.,0002002473,,BOW,Carrier,pending,"Fire, Marine & Casualty Insurance",2026-07-10,EDGAR SIC 6331 sweep [BOW],100
+"Brighthouse Financial, Inc.",0001685040,,BHFAP,Carrier,pending,Life Insurance,2026-07-10,EDGAR SIC 6311 sweep [BHFAP],100
+Brookfield Wealth Solutions Ltd.,0001837429,,BNT,Carrier,pending,Insurance Carriers NEC,2026-07-10,EDGAR SIC 6399 sweep [BNT],100
+CHINA LIFE INSURANCE CO LTD,0001268896,,CILFY,Carrier,pending,Life Insurance,2026-07-10,EDGAR SIC 6311 sweep [CILFY],100
+"CITIZENS, INC.",0000024090,,CIA,Carrier,pending,Life Insurance,2026-07-10,EDGAR SIC 6311 sweep [CIA],100
+"CNO Financial Group, Inc.",0001224608,,CNO-PA,Carrier,pending,Accident & Health Insurance,2026-07-10,EDGAR SIC 6321 sweep [CNO-PA],100
+CORVEL CORP,0000874866,,CRVL,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [CRVL],100
+CRAWFORD & CO,0000025475,,CRD-B,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [CRD-B],100
+Cheche Group Inc.,0001965473,,CCGWW,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [CCGWW],100
+"Corebridge Financial, Inc.",0001889539,,CRBD,Carrier,pending,Life Insurance,2026-07-10,EDGAR SIC 6311 sweep [CRBD],100
+ERIE INDEMNITY CO,0000922621,,ERIE,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [ERIE],100
+"Enact Holdings, Inc.",0001823529,,ACT,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [ACT],100
+"Equitable Holdings, Inc.",0001333986,,EQH-PC,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [EQH-PC],100
+Essent Group Ltd.,0001448893,,ESNT,Carrier,pending,Surety Insurance,2026-07-10,EDGAR SIC 6351 sweep [ESNT],100
+Ethos Technologies Inc.,0001788451,,LIFE,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [LIFE],100
+"F&G Annuities & Life, Inc.",0001934850,,FGSN,Carrier,pending,Life Insurance,2026-07-10,EDGAR SIC 6311 sweep [FGSN],100
+"Fidelity National Financial, Inc.",0001331875,,FNF,Carrier,pending,Title Insurance,2026-07-10,EDGAR SIC 6361 sweep [FNF],100
+First American Financial Corp,0001472787,,FAF,Carrier,pending,Title Insurance,2026-07-10,EDGAR SIC 6361 sweep [FAF],100
+"GoHealth, Inc.",0001808220,,GOCOQ,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [GOCOQ],100
+"Goosehead Insurance, Inc.",0001726978,,GSHD,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [GSHD],100
+"Hagerty, Inc.",0001840776,,HGTY,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [HGTY],100
+"Health In Tech, Inc.",0002019505,,HIT,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [HIT],100
+Huize Holding Ltd,0001778982,,HUIZ,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [HUIZ],100
+INVESTORS TITLE CO,0000720858,,ITIC,Carrier,pending,Title Insurance,2026-07-10,EDGAR SIC 6361 sweep [ITIC],100
+International General Insurance Holdings Ltd.,0001794338,,IGIC,Carrier,pending,Insurance Carriers NEC,2026-07-10,EDGAR SIC 6399 sweep [IGIC],100
+Kepler Group Ltd,0002000208,,KPL,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [KPL],100
+"MARSH & MCLENNAN COMPANIES, INC.",0000062709,,MRSH,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [MRSH],100
+MBIA INC,0000814585,,MBI,Carrier,pending,Surety Insurance,2026-07-10,EDGAR SIC 6351 sweep [MBI],100
+MGIC INVESTMENT CORP,0000876437,,MTG,Carrier,pending,Surety Insurance,2026-07-10,EDGAR SIC 6351 sweep [MTG],100
+"NMI Holdings, Inc.",0001547903,,NMIH,Carrier,pending,Surety Insurance,2026-07-10,EDGAR SIC 6351 sweep [NMIH],100
+Neptune Insurance Holdings Inc.,0002067129,,NP,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [NP],100
+OCTAVE SPECIALTY GROUP INC,0000874501,,OSG,Carrier,pending,Surety Insurance,2026-07-10,EDGAR SIC 6351 sweep [OSG],100
+OLD REPUBLIC INTERNATIONAL CORP,0000074260,,ORI,Carrier,pending,Surety Insurance,2026-07-10,EDGAR SIC 6351 sweep [ORI],100
+PARTNERRE LTD,0000911421,,PREJF,Carrier,pending,Accident & Health Insurance,2026-07-10,EDGAR SIC 6321 sweep [PREJF],100
+PRINCIPAL FINANCIAL GROUP INC,0001126328,,PFG,Carrier,pending,Accident & Health Insurance,2026-07-10,EDGAR SIC 6321 sweep [PFG],100
+QDM International Inc.,0001094032,,QDMI,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [QDMI],100
+RADIAN GROUP INC,0000890926,,RDN,Carrier,pending,Surety Insurance,2026-07-10,EDGAR SIC 6351 sweep [RDN],100
+"Reliance Global Group, Inc.",0001812727,,EZRA,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [EZRA],100
+Roadzen Inc.,0001868640,,RDZNW,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [RDZNW],100
+STEWART INFORMATION SERVICES CORP,0000094344,,STC,Carrier,pending,Title Insurance,2026-07-10,EDGAR SIC 6361 sweep [STC],100
+"eHealth, Inc.",0001333493,,EHTH,MGA/Broker,pending,"Insurance Agents, Brokers & Services",2026-07-10,EDGAR SIC 6411 sweep [EHTH],100
