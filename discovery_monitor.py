@@ -121,8 +121,9 @@ DATA_DIR   = SCRIPT_DIR / "data"
 OUTPUT_DIR = SCRIPT_DIR / "output"
 LOGS_DIR   = SCRIPT_DIR / "logs"
 
-FIRMS_CSV         = INPUT_DIR / "firms.csv"
-PENDING_FIRMS_CSV = INPUT_DIR / "pending_firms.csv"
+FIRMS_CSV              = INPUT_DIR / "firms.csv"
+PENDING_FIRMS_CSV      = INPUT_DIR / "pending_firms.csv"
+PENDING_PROMOTE_CSV    = INPUT_DIR / "pending_firms_promote.csv"
 DISCOVERY_DB_PATH = DATA_DIR / "discovery_baseline.db"
 
 TODAY    = date.today()
@@ -335,6 +336,26 @@ def load_all_pending() -> List[Dict]:
         return []
     with PENDING_FIRMS_CSV.open(encoding="utf-8-sig") as fh:
         return list(csv.DictReader(fh))
+
+
+# Columns that match firms.csv exactly — used for the promote file
+FIRMS_COLUMNS = ["Company Name", "CIK", "NAIC Code", "Ticker", "Company Type",
+                 "monitoring_status", "notes"]
+
+
+def write_promote_csv(logger: logging.Logger) -> None:
+    """
+    Write input/pending_firms_promote.csv — identical columns to firms.csv,
+    monitoring_status set to 'active'.  Ready to copy-paste rows into firms.csv.
+    """
+    pending = load_all_pending()
+    with PENDING_PROMOTE_CSV.open("w", newline="", encoding="utf-8-sig") as fh:
+        writer = csv.DictWriter(fh, fieldnames=FIRMS_COLUMNS, extrasaction="ignore")
+        writer.writeheader()
+        for row in pending:
+            row["monitoring_status"] = "active"
+            writer.writerow(row)
+    logger.info("Promote file written -> %s (%d firms)", PENDING_PROMOTE_CSV.name, len(pending))
 
 
 # ---------------------------------------------------------------------------
@@ -923,6 +944,8 @@ def main() -> None:
         }
 
     conn.close()
+
+    write_promote_csv(logger)
 
     logger.info("")
     logger.info("=" * 60)
