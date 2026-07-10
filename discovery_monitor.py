@@ -33,7 +33,15 @@ import requests
 from dotenv import load_dotenv
 from rapidfuzz import fuzz
 
-from edgar_client import RateLimiter, build_edgar_session, lookup_firm_on_edgar
+from edgar_client import (
+    INSURANCE_SIC_CODES,
+    RateLimiter,
+    build_edgar_session,
+    fetch_companies_by_sic,
+    fetch_company_submissions,
+    lookup_firm_on_edgar,
+    sic_to_company_type,
+)
 
 # ---------------------------------------------------------------------------
 # FEEDS — US insurance and InsurTech trade press
@@ -144,6 +152,15 @@ PENDING_COLUMNS = [
 # EDGAR rate limit — shared with intelligence_monitor but discovery runs separately
 EDGAR_REQUESTS_PER_SECOND = 5  # conservative for discovery (no urgency)
 
+# ---------------------------------------------------------------------------
+# INSURANCE STOCK DISCOVERY (EDGAR SIC sweep × SEC ticker map)
+# ---------------------------------------------------------------------------
+# Queries EDGAR for all 8-K-filing companies across the 8 insurance SIC codes,
+# then cross-references the SEC's exchange-listed ticker file to keep only
+# publicly traded stocks.  Runs monthly; results go to pending_firms.csv.
+SEC_TICKERS_URL = "https://www.sec.gov/files/company_tickers_exchange.json"
+STOCK_DISCOVERY_INTERVAL_DAYS = 28
+
 
 # ---------------------------------------------------------------------------
 # LOGGING
@@ -185,7 +202,25 @@ def init_discovery_db(conn: sqlite3.Connection) -> None:
             first_seen          TIMESTAMP,
             included_in_digest  INTEGER DEFAULT 0
         );
+        CREATE TABLE IF NOT EXISTS etf_discovery_meta (
+            id            INTEGER PRIMARY KEY CHECK (id = 1),
+            last_run_date TEXT
+        );
     """)
+    conn.commit()
+
+
+def get_etf_last_run(conn: sqlite3.Connection) -> Optional[str]:
+    row = conn.execute("SELECT last_run_date FROM etf_discovery_meta WHERE id = 1").fetchone()
+    return row["last_run_date"] if row else None
+
+
+def set_etf_last_run(conn: sqlite3.Connection, date_str: str) -> None:
+    conn.execute(
+        "INSERT INTO etf_discovery_meta (id, last_run_date) VALUES (1, ?) "
+        "ON CONFLICT(id) DO UPDATE SET last_run_date = excluded.last_run_date",
+        (date_str,),
+    )
     conn.commit()
 
 
@@ -255,7 +290,8 @@ def load_monitored_ciks() -> set:
 
 
 def append_pending_firm(edgar_result: Dict, discovered_date: str,
-                        source_article: str, logger: logging.Logger) -> bool:
+                        source_article: str, logger: logging.Logger,
+                        ticker: str = "") -> bool:
     """Add a new firm to pending_firms.csv if not already present. Returns True if added."""
     cik = edgar_result["cik"]
     existing = load_pending_firms()
@@ -277,7 +313,7 @@ def append_pending_firm(edgar_result: Dict, discovered_date: str,
             "Company Name":       edgar_result["company_name"],
             "CIK":                cik,
             "NAIC Code":          "",
-            "Ticker":             "",
+            "Ticker":             ticker,
             "Company Type":       edgar_result["company_type"],
             "monitoring_status":  "pending",
             "notes":              edgar_result["sic_description"],
@@ -286,9 +322,10 @@ def append_pending_firm(edgar_result: Dict, discovered_date: str,
             "edgar_match_score":  edgar_result["match_score"],
         })
 
-    logger.info("  PENDING: added %s (CIK %s, SIC %s, score %d)",
-                edgar_result["company_name"], cik,
-                edgar_result["sic"], edgar_result["match_score"])
+    logger.info("  PENDING: added %s  %s  (CIK %s, SIC %s %s)",
+                edgar_result["company_name"],
+                f"[{ticker}]" if ticker else "",
+                cik, edgar_result["sic"], edgar_result["sic_description"])
     return True
 
 
@@ -500,6 +537,7 @@ def send_weekly_email(
         "=" * 60,
         f"NEW FIRMS IDENTIFIED      : {stats['new_firms']}",
         f"  - EDGAR auto-resolved   : {stats['edgar_resolved']}",
+        f"  - ETF sweep added       : {stats['etf_added']}",
         f"  - Needs manual lookup   : {stats['new_firms'] - stats['edgar_resolved']}",
         f"KNOWN FIRMS WITH ACTIVITY : {stats['known_firms']}",
         f"FEEDS MONITORED           : {stats['feeds_fetched']}",
@@ -593,6 +631,118 @@ def send_weekly_email(
         logger.info("Weekly email sent to %s", ", ".join(recipients))
     except smtplib.SMTPException as exc:
         logger.error("Failed to send email: %s", exc)
+
+
+# ---------------------------------------------------------------------------
+# INSURANCE STOCK DISCOVERY
+# ---------------------------------------------------------------------------
+
+def fetch_sec_ticker_map(
+    session: requests.Session,
+    limiter: RateLimiter,
+    logger: logging.Logger,
+) -> Dict[str, str]:
+    """
+    Download SEC company_tickers_exchange.json → {cik: ticker}.
+
+    This is the SEC's authoritative list of all exchange-listed companies.
+    Used to filter the EDGAR SIC sweep to only publicly traded stocks.
+    """
+    limiter.wait()
+    try:
+        resp = session.get(SEC_TICKERS_URL, timeout=(5, 30))
+        resp.raise_for_status()
+    except requests.RequestException as exc:
+        logger.warning("SEC ticker map fetch failed: %s", exc)
+        return {}
+    payload = resp.json()
+    # Format: {"fields": ["cik","name","ticker","exchange"], "data": [[cik, name, ticker, exch], ...]}
+    fields = payload.get("fields", [])
+    data   = payload.get("data", [])
+    try:
+        cik_idx    = fields.index("cik")
+        ticker_idx = fields.index("ticker")
+    except ValueError:
+        logger.warning("SEC ticker map: unexpected JSON structure — fields: %s", fields)
+        return {}
+    cik_to_ticker: Dict[str, str] = {}
+    for row in data:
+        cik    = str(row[cik_idx]).zfill(10)
+        ticker = str(row[ticker_idx]).upper().strip()
+        if cik and ticker:
+            cik_to_ticker[cik] = ticker
+    logger.info("SEC ticker map: %d exchange-listed companies", len(cik_to_ticker))
+    return cik_to_ticker
+
+
+def run_stock_discovery(
+    conn: sqlite3.Connection,
+    edgar_session: requests.Session,
+    edgar_limiter: RateLimiter,
+    logger: logging.Logger,
+) -> int:
+    """
+    Monthly: sweep EDGAR for all insurance-SIC-code 8-K filers, cross-reference
+    with the SEC ticker file to keep only exchange-listed stocks, write new firms
+    to pending_firms.csv.  Returns number of new firms added.
+    """
+    last_run = get_etf_last_run(conn)
+    if last_run:
+        days_since = (TODAY - date.fromisoformat(last_run)).days
+        if days_since < STOCK_DISCOVERY_INTERVAL_DAYS:
+            logger.info(
+                "Stock discovery last ran %s (%d days ago) — skipping (interval %d days)",
+                last_run, days_since, STOCK_DISCOVERY_INTERVAL_DAYS,
+            )
+            return 0
+
+    logger.info("=" * 60)
+    logger.info("Insurance Stock Discovery (EDGAR SIC sweep)")
+    logger.info("=" * 60)
+
+    # Step 1: all insurance-sector 8-K filers from EDGAR (8 HTTP calls)
+    sic_companies = fetch_companies_by_sic(edgar_session, edgar_limiter, logger)
+    logger.info("EDGAR SIC sweep total: %d companies across all insurance SICs",
+                len(sic_companies))
+
+    # Step 2: SEC ticker map — keep only exchange-listed stocks
+    cik_to_ticker = fetch_sec_ticker_map(edgar_session, edgar_limiter, logger)
+
+    monitored  = load_monitored_ciks()
+    today_str  = TODAY.isoformat()
+    added      = 0
+    skipped    = 0
+
+    for cik, co in sorted(sic_companies.items(), key=lambda x: x[1]["name"]):
+        ticker = cik_to_ticker.get(cik, "")
+        if not ticker:
+            continue   # not exchange-listed — skip
+
+        if cik in monitored:
+            skipped += 1
+            continue
+
+        edgar_result = {
+            "cik":             cik,
+            "company_name":    co["name"],
+            "sic":             co["sic"],
+            "sic_description": co["sic_description"],
+            "company_type":    sic_to_company_type(co["sic"]),
+            "match_score":     100,
+            "is_insurance":    True,
+        }
+        source_label = f"EDGAR SIC {co['sic']} sweep [{ticker}]"
+        ok = append_pending_firm(edgar_result, today_str, source_label, logger, ticker=ticker)
+        if ok:
+            added += 1
+
+    set_etf_last_run(conn, today_str)
+    logger.info(
+        "Stock discovery done: %d new firms added | %d already monitored | "
+        "%d in EDGAR but not exchange-listed (skipped)",
+        added, skipped, len(sic_companies) - skipped - added,
+    )
+    return added
 
 
 # ---------------------------------------------------------------------------
@@ -722,6 +872,11 @@ def main() -> None:
     else:
         logger.info("No new firm candidates to look up on EDGAR")
 
+    # -------------------------------------------------------------------------
+    # ETF-BASED DISCOVERY: runs monthly, populates pending_firms.csv
+    # -------------------------------------------------------------------------
+    etf_added = run_stock_discovery(conn, edgar_session, edgar_limiter, logger)
+
     pending_firms = load_all_pending()
 
     if not digest_already_produced:
@@ -751,6 +906,7 @@ def main() -> None:
             "articles_triggered": articles_triggered,
             "new_firms":          len(new_rows),
             "edgar_resolved":     edgar_resolved,
+            "etf_added":          etf_added,
             "known_firms":        len(all_rows) - len(new_rows),
         }
         send_weekly_email(stats, all_rows, unresolved_new, pending_firms, logger)
@@ -762,6 +918,7 @@ def main() -> None:
             "articles_triggered": articles_triggered,
             "new_firms":          new_firm_count,
             "edgar_resolved":     edgar_resolved,
+            "etf_added":          etf_added,
             "known_firms":        known_firm_count,
         }
 
@@ -777,6 +934,7 @@ def main() -> None:
     logger.info("Articles triggered   : %d", stats["articles_triggered"])
     logger.info("New firm candidates  : %d", stats["new_firms"])
     logger.info("  EDGAR resolved     : %d", stats["edgar_resolved"])
+    logger.info("  ETF sweep added    : %d", stats["etf_added"])
     logger.info("Known firm events    : %d", stats["known_firms"])
     logger.info("Total pending firms  : %d", len(pending_firms))
     logger.info("=" * 60)

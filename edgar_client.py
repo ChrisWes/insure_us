@@ -482,13 +482,71 @@ def fetch_current_officers(
 # COMPANY NAME LOOKUP (used by discovery monitor for auto-CIK resolution)
 # ---------------------------------------------------------------------------
 
-def _sic_to_company_type(sic: str) -> str:
+def sic_to_company_type(sic: str) -> str:
     """Map a SIC code to a human-readable company type for firms.csv."""
     if sic in ("6411",):
         return "MGA/Broker"
     if sic in INSURANCE_SIC_CODES:
         return "Carrier"
     return "Unknown"
+
+
+# Keep private alias for any callers that used the old name
+_sic_to_company_type = sic_to_company_type
+
+
+def fetch_companies_by_sic(
+    session: requests.Session,
+    limiter: RateLimiter,
+    logger: logging.Logger,
+) -> Dict[str, Dict]:
+    """
+    Query EDGAR company search for each insurance SIC code and return all results.
+
+    Makes 8 requests (one per SIC). Returns {cik: {name, sic, sic_description}}.
+    Each result is a company that files 8-Ks with an insurance-sector SIC code.
+    Cross-reference with company_tickers_exchange.json to filter to listed stocks.
+    """
+    all_companies: Dict[str, Dict] = {}
+    for sic, description in INSURANCE_SIC_CODES.items():
+        params = {
+            "action":      "getcompany",
+            "State":       "0",
+            "SIC":         sic,
+            "dateb":       "",
+            "owner":       "include",
+            "count":       "100",
+            "search_text": "",
+            "type":        "8-K",   # only include active 8-K filers
+        }
+        resp = _edgar_get(session, EDGAR_COMPANY_SEARCH, params, limiter, logger,
+                          accept="text/html,*/*")
+        if resp is None or resp.status_code != 200:
+            logger.warning("EDGAR SIC %s search failed", sic)
+            continue
+        soup = BeautifulSoup(resp.text, "lxml")
+        table = soup.find("table", class_="tableFile2")
+        if not table:
+            logger.debug("EDGAR SIC %s: no results table", sic)
+            continue
+        count = 0
+        for row in table.find_all("tr")[1:]:
+            cols = row.find_all("td")
+            if len(cols) < 2:
+                continue
+            raw_cik = cols[0].get_text(strip=True)
+            name    = cols[1].get_text(strip=True)
+            if raw_cik and name:
+                cik = raw_cik.lstrip("0").zfill(10)
+                if cik not in all_companies:
+                    all_companies[cik] = {
+                        "name":            name,
+                        "sic":             sic,
+                        "sic_description": description,
+                    }
+                    count += 1
+        logger.info("EDGAR SIC %s (%s): %d companies", sic, description[:30], count)
+    return all_companies
 
 
 def lookup_firm_on_edgar(
