@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared - Short-lived,0000896159,Chubb Limited,Global Head of DevOps Services,"Summit Avenue, Hudson County",372525.28,372525.28,2026-07-02,2026-07-11,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,"VP, Claims Transformation Initiative Lead","Chelsea and Clinton, Manhattan",237690.14,237690.14,2026-07-02,2026-07-11,Carrier,active
+New Posting,0000037808,MetLife,Lead Mainframe CICS SRE,"Grand Central, Manhattan",173451.28,173451.28,2026-07-10,2026-07-11,Carrier,active
+New Posting,0000037808,MetLife,Lead Mainframe z/OS Db2 SRE,"Grand Central, Manhattan",148388.48,148388.48,2026-07-10,2026-07-11,Carrier,active
