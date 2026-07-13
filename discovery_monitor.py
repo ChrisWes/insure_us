@@ -99,16 +99,38 @@ FUZZY_MATCH_THRESHOLD = 80
 ARTICLE_LOOKBACK_DAYS = 7
 
 FIRM_EXTRACTION_STOP_WORDS = frozenset({
+    # Articles / prepositions / conjunctions
     "The", "A", "An", "In", "At", "For", "On", "By", "To", "With", "Of",
-    "And", "Or", "But", "New", "First", "Last", "Latest", "Week", "Annual",
+    "And", "Or", "But", "Its", "As", "Is", "Are", "Be", "Has", "Have",
+    # Geographic — countries, regions, US states, cities
     "US", "UK", "EU", "NYC", "New", "York", "America", "Global", "International",
-    "North", "South", "East", "West", "American",
-    "Q1", "Q2", "Q3", "Q4", "CEO", "CTO", "CFO", "CIO", "MD", "COO", "Chair",
+    "North", "South", "East", "West", "American", "European", "Asian",
+    "California", "Ohio", "Texas", "Florida", "Illinois", "Georgia", "Michigan",
+    "Pennsylvania", "Connecticut", "Massachusetts", "New Jersey",
+    "Washington", "Colorado", "Minnesota", "Virginia", "Maryland", "Nevada",
+    # Time / calendar
+    "Q1", "Q2", "Q3", "Q4",
     "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December",
+    # Roles (appear in appointment headlines but are NOT firm names)
+    "CEO", "CTO", "CFO", "CIO", "COO", "CMO", "Chair", "EVP", "SVP", "VP",
+    "President", "Director", "Officer", "Counsel", "Actuary", "Commissioner",
+    "Chief", "Senior", "Executive", "Managing", "General",
+    # Verbs / action words common in headlines
+    "Sues", "Wins", "Loses", "Finds", "Says", "Seeks", "Passes", "Beats",
+    "Countersues", "Sentenced", "OKs", "Ranked", "Ranking", "Doing",
+    "Directly", "Regulate", "Regulate", "Protect", "Combat", "Upping",
+    "Covered", "Caught", "Hires",
+    # Generic article-structure words
     "Report", "Update", "News", "Review", "Analysis", "Comment", "Feature",
     "How", "Why", "What", "When", "Where", "Which", "Who",
+    "People", "Moves", "Declarations", "Ranking", "Industry", "Majority",
+    "Consistency", "Creativity", "Marketing", "Stability", "Pivotal",
+    "Large", "First", "Last", "Latest", "Week", "Annual", "Daily",
+    # Regulatory / government bodies
+    "EEOC", "DEI", "DOJ", "SEC", "FCA", "NAIC", "CFPB",
+    "Lawmakers", "Lawmakers", "Regulators", "Commissioner",
 })
 _FEED_PUBLICATION_NAMES = frozenset(f["name"] for f in FEEDS)
 
@@ -413,31 +435,142 @@ def get_entry_url(entry) -> str:
 # ---------------------------------------------------------------------------
 # KEYWORD MATCHING
 # ---------------------------------------------------------------------------
+
+# Short keywords (≤4 chars) that must match as whole words, not substrings.
+# "AI" in text otherwise hits "paid", "daily", "trail", "detail" etc.
+_WHOLE_WORD_KWS = frozenset(
+    kw for kw in TRIGGER_KEYWORDS if len(kw) <= 4
+)
+_WHOLE_WORD_RE  = {
+    kw: re.compile(r"\b" + re.escape(kw.lower()) + r"\b")
+    for kw in _WHOLE_WORD_KWS
+}
+
+
 def find_trigger_keywords(title: str, description: str) -> List[str]:
     text = f"{title} {description}".lower()
-    return [kw for kw in TRIGGER_KEYWORDS if kw.lower() in text]
+    matched = []
+    for kw in TRIGGER_KEYWORDS:
+        if kw in _WHOLE_WORD_KWS:
+            if _WHOLE_WORD_RE[kw].search(text):
+                matched.append(kw)
+        else:
+            if kw.lower() in text:
+                matched.append(kw)
+    return matched
 
 
 # ---------------------------------------------------------------------------
 # FIRM NAME EXTRACTION
 # ---------------------------------------------------------------------------
-_TITLE_CASE_SEQ = re.compile(r"\b[A-Z][A-Za-z&]+(?:\s+[A-Z][A-Za-z&]+)+\b")
+
+# Insurance/financial company name suffixes — anchors a confident extraction
+_COMPANY_SUFFIX_RE = re.compile(
+    r"\b(Insurance|Reinsurance|Re|Capital|Group|Holdings|Partners|Specialty|"
+    r"Programs|Actuaries|Actuarial|Agency|Agencies|Advisors|Advisers|"
+    r"Solutions|Underwriters|Underwriting|Brokers|Brokerage|Financial|"
+    r"Trust|Mutual|Casualty|Property|Indemnity|Guarantee|Guaranty|Surety|"
+    r"Associates|Management|Consulting|Ventures|Investments|Worldwide|"
+    r"International|Technologies|Technology|Analytics|Strategies|"
+    r"Inc|Corp|Ltd|LLC|LLP|plc)\b",
+    re.IGNORECASE,
+)
+
+# Appointment verbs used in People Moves headlines
+_APPOINT_VERB_RE = re.compile(
+    r"\b(Names|Hires|Appoints|Appointed|Adds|Promotes|Promoted|Elects|"
+    r"Elected|Taps|Selects|Joins|Named|Hired)\b"
+)
+_APPOINT_VERBS = frozenset({
+    "Names", "Hires", "Appoints", "Appointed", "Adds", "Promotes", "Promoted",
+    "Elects", "Elected", "Taps", "Selects", "Joins", "Named", "Hired",
+})
+
+# Any title-case sequence of 1-5 words (used as raw candidates)
+_TITLE_CASE_SEQ = re.compile(r"\b[A-Z][A-Za-z&\.]+(?:\s+[A-Z][A-Za-z&\.]+){0,4}\b")
+
+
+def _meaningful_words(seq: str) -> List[str]:
+    return [
+        w for w in seq.split()
+        if w not in FIRM_EXTRACTION_STOP_WORDS
+        and w not in _FEED_PUBLICATION_NAMES
+    ]
 
 
 def extract_firm_name(title: str, logger: logging.Logger) -> Optional[str]:
-    candidates = []
+    """
+    Extract an insurance firm name from an article title.
+
+    Strategy 1 — People Moves pattern:
+      "Trucordia Names Roberts EVP; Arrowhead Programs Adds Kaufman as SVP"
+      → look for TitleCase sequence immediately before an appointment verb
+      → return that sequence (it's the hiring firm)
+
+    Strategy 2 — Company-suffix anchor:
+      Find any title-case sequence that contains a known company-type suffix
+      (Insurance, Group, Holdings, Capital, etc.) and has ≥1 meaningful word
+      beyond the suffix itself.
+      "Pinnacle Actuaries" → caught; "California Insurance Commissioner" → rejected
+      because "California" is a stop word and "Commissioner" is not the firm.
+
+    Returns None if neither strategy yields a credible result.
+    """
+    # ── Strategy 1: people-moves pattern ──────────────────────────────────
+    # Strip "People Moves:" prefix to get to the actual firm name
+    search_text = re.sub(r"^[^:]{1,30}:\s*", "", title) if ":" in title[:30] else title
+
+    for m in _APPOINT_VERB_RE.finditer(search_text):
+        # Take everything before the verb, find the last title-case sequence
+        before = search_text[:m.start()].strip()
+        candidates = _TITLE_CASE_SEQ.findall(before)
+        if candidates:
+            firm = candidates[-1].strip()  # last title-case run before the verb
+            words = _meaningful_words(firm)
+            if words and len(firm.split()) <= 5:
+                logger.debug("  People-moves extraction: %r", firm)
+                return firm
+
+    # ── Strategy 2: suffix-anchored title-case sequence ───────────────────
     for seq in _TITLE_CASE_SEQ.findall(title):
+        if not _COMPANY_SUFFIX_RE.search(seq):
+            continue
+
+        # Strip leading stop words and appointment verbs
+        # e.g. "NYC Hires Pinnacle Actuaries" → strip "NYC", "Hires" → "Pinnacle Actuaries"
         words = seq.split()
-        meaningful = [
-            w for w in words
-            if w not in FIRM_EXTRACTION_STOP_WORDS
-            and w not in _FEED_PUBLICATION_NAMES
-        ]
-        if meaningful:
-            if len(meaningful) == 1:
-                logger.debug("  Low-confidence extraction: %r (only 1 meaningful word)", seq)
-            candidates.append(seq)
-    return candidates[0] if candidates else None
+        start = 0
+        for i, w in enumerate(words):
+            if w in FIRM_EXTRACTION_STOP_WORDS or w in _APPOINT_VERBS:
+                start = i + 1
+            else:
+                break
+        trimmed = words[start:]
+        if not trimmed:
+            continue
+
+        # The first word must NOT itself be a suffix/generic word
+        # Rejects "Insurance Fraud", "Financial Sector", "Insurance Industry"
+        if _COMPANY_SUFFIX_RE.fullmatch(trimmed[0]):
+            continue
+
+        # Must have ≥1 proper-noun word before or alongside the suffix
+        non_suffix = [w for w in trimmed
+                      if not _COMPANY_SUFFIX_RE.fullmatch(w)
+                      and w not in FIRM_EXTRACTION_STOP_WORDS]
+        if not non_suffix:
+            continue
+
+        # Truncate at last suffix word so "Corvus Insurance Raises Series"
+        # → "Corvus Insurance" (not over-capturing trailing verbs/nouns)
+        last_suffix_idx = max(
+            i for i, w in enumerate(trimmed) if _COMPANY_SUFFIX_RE.fullmatch(w)
+        )
+        firm = " ".join(trimmed[: last_suffix_idx + 1])
+        logger.debug("  Suffix-anchored extraction: %r", firm)
+        return firm
+
+    return None
 
 
 # ---------------------------------------------------------------------------
