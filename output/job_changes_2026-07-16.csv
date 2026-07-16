@@ -1,0 +1,7 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared - Short-lived,0000005272,AIG (American International Group),Business Data Analyst,"Jersey City, Hudson County",96134.19,96134.19,2026-07-05,2026-07-16,Carrier,active
+New Posting,0000037808,MetLife,eDiscovery Project Manager,"Grand Central, Manhattan",122442.04,122442.04,2026-07-15,2026-07-16,Carrier,active
+Disappeared - Short-lived,0001889539,"Corebridge Financial, Inc.","Product Owner, Digital Transformation (IR)","Jersey City, Hudson County",112000.0,122000.0,2026-05-08,2026-07-16,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,Strategy Manager,"New York City, New York",94500,115500,2026-07-15,2026-07-16,MGA/Broker,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,Senior Accountant,"New York City, New York",90000.0,105000.0,2026-05-21,2026-07-16,MGA/Broker,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,"Senior Analyst, Retail Media Strategy & Activation","New York City, New York",73500.0,85000.0,2026-07-01,2026-07-16,MGA/Broker,active
