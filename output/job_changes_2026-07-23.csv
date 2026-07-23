@@ -1,0 +1,4 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared - Short-lived,0000005272,AIG (American International Group),Mass Tort and Complex Casualty - Claims Adjuster,"Jersey City, Hudson County",56000.0,89000.0,2026-06-17,2026-07-23,Carrier,active
+New Posting,0000011544,W.R. Berkley Corporation,Reserve Underwriter,"Grand Central, Manhattan",179224.34,179224.34,2026-07-16,2026-07-23,Carrier,active
+Disappeared - Short-lived,0000011544,W.R. Berkley Corporation,Ultra High Net Worth Underwriter,"Grand Central, Manhattan",179658.31,179658.31,2026-05-23,2026-07-23,Carrier,active
