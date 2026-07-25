@@ -1,0 +1,8 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000896159,Chubb Limited,"VP, Transformation Management Office","Chelsea and Clinton, Manhattan",243825.53,243825.53,2026-07-11,2026-07-25,Carrier,active
+New Posting,0000896159,Chubb Limited,Technical Delivery Lead,"Jersey City, Hudson County",220000,255000,2026-07-24,2026-07-25,Carrier,active
+New Posting,0000011544,W.R. Berkley Corporation,Ultra High Net Worth Underwriter,"Grand Central, Manhattan",179658.31,179658.31,2026-05-23,2026-07-25,Carrier,active
+Disappeared - Short-lived,0000011544,W.R. Berkley Corporation,Reserve Underwriter,"Grand Central, Manhattan",179224.34,179224.34,2026-07-16,2026-07-25,Carrier,active
+Disappeared - Short-lived,0002019505,"Health In Tech, Inc.","Senior VP, Digital Health & Medical Education","Grand Central, Manhattan",137623.55,137623.55,2026-07-21,2026-07-25,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"Senior Director, Product Marketing","New York City, New York",160000,170000,2026-07-24,2026-07-25,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"Associate VP, Product Manager","New York City, New York",212750,224250,2026-07-24,2026-07-25,MGA/Broker,active
