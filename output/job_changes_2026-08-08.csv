@@ -1,0 +1,6 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared - Short-lived,0000005272,AIG (American International Group),"Associate General Counsel, Cyber & Privacy Legal (New York)","Grand Central, Manhattan",170.0,200.0,2026-07-24,2026-08-08,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),Senior Cybersecurity & Regulatory Counsel (New York),"Grand Central, Manhattan",170.0,200.0,2026-07-24,2026-08-08,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,Ingestion Principal Engineer,"Jersey City, Hudson County",240000.0,280000.0,2026-07-24,2026-08-08,Carrier,active
+New Posting,0000037808,MetLife,Senior .NET Engineer (Azure/ Kubernetes),"Grand Central, Manhattan",176533.75,176533.75,2026-08-07,2026-08-08,Carrier,active
+New Posting,0000037808,MetLife,Strategy & Planning Business Operations Lead,"Grand Central, Manhattan",156247.58,156247.58,2026-08-07,2026-08-08,Carrier,active
