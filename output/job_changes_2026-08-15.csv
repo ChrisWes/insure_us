@@ -1,0 +1,6 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Technical Solutioning Engineer,"Five Corners, Hudson County",188935.03,188935.03,2026-08-14,2026-08-15,Carrier,active
+New Posting,0000005272,AIG (American International Group),"Director, Head of Compute Engineering","Five Corners, Hudson County",258321.66,258321.66,2026-08-14,2026-08-15,Carrier,active
+New Posting,0000005272,AIG (American International Group),"Vice President, Principal Solutions Architect, GenAI","Five Corners, Hudson County",228059.17,228059.17,2026-08-14,2026-08-15,Carrier,active
+Disappeared,0000037808,MetLife,"Director, SRE - Enterprise Reliability","Grand Central, Manhattan",273720.34,273720.34,2026-07-09,2026-08-15,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,"SVP, Head of Global Infrastructure","Grand Central, Manhattan",315375.72,315375.72,2026-08-12,2026-08-15,Carrier,active
