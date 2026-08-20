@@ -1,0 +1,4 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000899051,ALLSTATE CORP,Digital Product Manager,"Grand Central, Manhattan",178706.86,178706.86,2026-08-19,2026-08-20,Carrier,active
+New Posting,0000899051,ALLSTATE CORP,Digital Product Manager,"Grand Central, Manhattan",139936.45,139936.45,2026-08-19,2026-08-20,Carrier,active
+New Posting,0000062709,"MARSH & MCLENNAN COMPANIES, INC.",Oliver Wyman - Senior Lead AI Engineer,"Grand Central, Manhattan",233096.34,233096.34,2026-08-19,2026-08-20,MGA/Broker,active
