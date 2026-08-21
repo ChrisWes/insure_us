@@ -1,0 +1,10 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared - Short-lived,0000005272,AIG (American International Group),Technical Solutioning Engineer,"Five Corners, Hudson County",188935.03,188935.03,2026-08-14,2026-08-21,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),"Director, Head of Compute Engineering","Five Corners, Hudson County",258321.66,258321.66,2026-08-14,2026-08-21,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),"Vice President, Principal Solutions Architect, GenAI","Five Corners, Hudson County",228059.17,228059.17,2026-08-14,2026-08-21,Carrier,active
+New Posting,0000037808,MetLife,"Sr. Analyst, AI Billing & Data Intelligence","Grand Central, Manhattan",124687.55,124687.55,2026-08-20,2026-08-21,Carrier,active
+New Posting,0000037808,MetLife,Principal Architect - AI Platform & Solutions,"Grand Central, Manhattan",247501.6,247501.6,2026-08-20,2026-08-21,Carrier,active
+New Posting,0000037808,MetLife,"AVP, Technology Product Manager - Sales","Grand Central, Manhattan",249766.03,249766.03,2026-08-20,2026-08-21,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,Lead Microsoft Power Platform Engineer,"Grand Central, Manhattan",192814.0,192814.0,2026-08-16,2026-08-21,Carrier,active
+New Posting,0000062709,"MARSH & MCLENNAN COMPANIES, INC.",Senior Project Manager,"New York City, New York",127468.41,127468.41,2026-08-20,2026-08-21,MGA/Broker,active
+Disappeared - Short-lived,0000062709,"MARSH & MCLENNAN COMPANIES, INC.","Data Strategy Lead, Digital Client Experience (DCX) - Marsh","Grand Central, Manhattan",193773.48,193773.48,2026-08-16,2026-08-21,MGA/Broker,active
