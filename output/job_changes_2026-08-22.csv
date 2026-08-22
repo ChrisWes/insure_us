@@ -1,0 +1,7 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),"Senior Claims Examiner, International Casualty","Jersey City, Hudson County",73900,103500,2026-08-21,2026-08-22,Carrier,active
+Disappeared,0000005272,AIG (American International Group),Senior Claims Adjuster - Casualty Coverage and Mass Tort,"Jersey City, Hudson County",86000.0,106000.0,2026-05-07,2026-08-22,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),"Associate General Counsel, Cyber & Privacy Legal (New York)","Grand Central, Manhattan",170.0,200.0,2026-07-24,2026-08-22,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),Senior Cybersecurity & Regulatory Counsel (New York),"Grand Central, Manhattan",170.0,200.0,2026-07-24,2026-08-22,Carrier,active
+Disappeared - Short-lived,0000899051,ALLSTATE CORP,Digital Product Manager,"Grand Central, Manhattan",139936.45,139936.45,2026-08-19,2026-08-22,Carrier,active
+Disappeared,0002000208,Kepler Group Ltd,"Director, Strategy","New York City, New York",140000.0,160000.0,2025-10-09,2026-08-22,MGA/Broker,active
