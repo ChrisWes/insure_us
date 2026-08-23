@@ -1,0 +1,4 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared,0000005272,AIG (American International Group),"Director, Head of Compute Engineering","Jersey City, Hudson County",139000.0,175000.0,2026-05-16,2026-08-23,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,Strategy & Planning Business Operations Lead,"Grand Central, Manhattan",156247.58,156247.58,2026-08-07,2026-08-23,Carrier,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,"Senior Director, Product Marketing (New York)","Grand Central, Manhattan",176.0,204.0,2026-08-01,2026-08-23,MGA/Broker,active
