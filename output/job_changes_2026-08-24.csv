@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared,0000037808,MetLife,Senior Engineer & Administrator,"Grand Central, Manhattan",173561.66,173561.66,2026-07-12,2026-08-24,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,Technology Strategy & Portfolio Leader,"Grand Central, Manhattan",238230.7,238230.7,2026-08-16,2026-08-24,Carrier,active
+New Posting,0001214816,AXIS CAPITAL HOLDINGS LTD,Finance Business Analyst,"New York City, New York",78509.37,78509.37,2026-08-23,2026-08-24,Carrier,active
+New Posting,0002040491,Ategrity Specialty Insurance Co Holdings,Finance Project Manager,"New York City, New York",96205.45,96205.45,2026-08-23,2026-08-24,Carrier,active
