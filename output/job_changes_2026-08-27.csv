@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Senior Claims Adjuster - Casualty Coverage and Mass Tort,"Jersey City, Hudson County",86000,106000,2026-08-26,2026-08-27,Carrier,active
+Disappeared,0000005272,AIG (American International Group),"Vice President, Principal Solutions Architect, GenAI","Jersey City, Hudson County",261248.0,,2026-07-05,2026-08-27,Carrier,active
+Disappeared - Short-lived,0000899051,ALLSTATE CORP,Digital Product Manager,"Grand Central, Manhattan",178706.86,178706.86,2026-08-19,2026-08-27,Carrier,active
+Disappeared - Short-lived,0001214816,AXIS CAPITAL HOLDINGS LTD,Finance Business Analyst,"New York City, New York",78509.37,78509.37,2026-08-23,2026-08-27,Carrier,active
