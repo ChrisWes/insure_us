@@ -1,0 +1,9 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared,0000896159,Chubb Limited,Technical Delivery Lead,"Jersey City, Hudson County",220000.0,255000.0,2026-07-24,2026-08-28,Carrier,active
+New Posting,0000037808,MetLife,"Manager, Event Operations & Venue Technology","Grand Central, Manhattan",163731.69,163731.69,2026-08-27,2026-08-28,Carrier,active
+New Posting,0000037808,MetLife,"Lead, AI Delivery Transformation","Grand Central, Manhattan",171876.77,171876.77,2026-08-27,2026-08-28,Carrier,active
+New Posting,0000037808,MetLife,"AI Principal, Strategy & Transformation","Grand Central, Manhattan",222514.17,222514.17,2026-08-27,2026-08-28,Carrier,active
+New Posting,0000037808,MetLife,Principal Streaming & Event Lead,"Grand Central, Manhattan",140702.97,140702.97,2026-08-27,2026-08-28,Carrier,active
+Disappeared,0002000208,Kepler Group Ltd,"Senior Analyst, Strategy","New York City, New York",73500.0,85000.0,2026-06-03,2026-08-28,MGA/Broker,active
+Disappeared,0002000208,Kepler Group Ltd,"Senior Analyst, Activation","New York City, New York",73500.0,85000.0,2026-06-13,2026-08-28,MGA/Broker,active
+Disappeared,0002000208,Kepler Group Ltd,"Senior Specialist, Media Strategy","New York City, New York",73500.0,85000.0,2026-06-25,2026-08-28,MGA/Broker,active
