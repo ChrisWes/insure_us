@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000896159,Chubb Limited,"Manager, CX/UX and Visual Design, Renters","Jersey City, Hudson County",174000,200000,2026-08-30,2026-08-31,Carrier,active
+New Posting,0000037808,MetLife,"SVP, Head of Global Infrastructure","Grand Central, Manhattan",315375.72,315375.72,2026-08-30,2026-08-31,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,"Director, Sales Technology","Grand Central, Manhattan",247348.22,247348.22,2026-08-28,2026-08-31,Carrier,active
+Disappeared,0002000208,Kepler Group Ltd,"Associate Director, Strategy","New York City, New York",117000.0,130000.0,2026-07-10,2026-08-31,MGA/Broker,active
