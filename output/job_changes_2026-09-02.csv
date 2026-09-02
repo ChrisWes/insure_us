@@ -1,0 +1,11 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),"Vice President, Principal Solutions Architect, GenAI","Jersey City, Hudson County",261248,261248,2026-08-26,2026-09-02,Carrier,active
+New Posting,0000896159,Chubb Limited,"Manager, CX/UX and Visual Design, Renters","Summit Avenue, Hudson County",214865.42,214865.42,2026-09-01,2026-09-02,Carrier,active
+New Posting,0000354190,Arthur J. Gallagher & Co.,Area Vice President,"Grand Central, Manhattan",104632.99,104632.99,2026-09-01,2026-09-02,MGA/Broker,active
+New Posting,0002019505,"Health In Tech, Inc.","Senior VP, Digital Health & Medical Education","Grand Central, Manhattan",137623.55,137623.55,2026-09-01,2026-09-02,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"Senior Director, Product Marketing","Grand Central, Manhattan",216939.86,216939.86,2026-09-01,2026-09-02,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"Associate VP, Product Manager","New York City, New York",185000,195000,2026-07-24,2026-09-02,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"Manager, Data Strategy & Analytics, Retail","New York City, New York",90000,110000,2026-05-31,2026-09-02,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"Director, Data Strategy & Analytics, Retail","New York City, New York",140000,160000,2026-05-31,2026-09-02,MGA/Broker,active
+Disappeared,0002000208,Kepler Group Ltd,"Manager, Retail Media Strategy & Activation","New York City, New York",90000.0,110000.0,2026-06-28,2026-09-02,MGA/Broker,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,"Senior Director, Product Marketing (New York)","Grand Central, Manhattan",176.0,204.0,2026-08-01,2026-09-02,MGA/Broker,active
