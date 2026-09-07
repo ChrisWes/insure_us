@@ -1,0 +1,4 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000037808,MetLife,"Director, Head of Compliance Technology","Grand Central, Manhattan",355626.8,355626.8,2026-09-06,2026-09-07,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,"Developer, Sales Technology","Grand Central, Manhattan",128360.99,128360.99,2026-08-28,2026-09-07,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,Senior Salesforce Analyst,"Grand Central, Manhattan",182049.66,182049.66,2026-08-28,2026-09-07,Carrier,active
