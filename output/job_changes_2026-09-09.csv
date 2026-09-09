@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000896159,Chubb Limited,"Sr. Software Engineer, Digital Consumer","Summit Avenue, Hudson County",195372.81,195372.81,2026-09-08,2026-09-09,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,"Manager, CX/UX and Visual Design, Renters","Summit Avenue, Hudson County",214865.42,214865.42,2026-09-01,2026-09-09,Carrier,active
+New Posting,0000037808,MetLife,TBM Principal - Cost Transparency,"Grand Central, Manhattan",184899.95,184899.95,2026-09-08,2026-09-09,Carrier,active
+Disappeared,0000037808,MetLife,Technical Functional Analyst,"Grand Central, Manhattan",139273.3,139273.3,2026-07-03,2026-09-09,Carrier,active
