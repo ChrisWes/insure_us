@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Assistant Vice President - Mass Tort and Complex Casualty,"Jersey City, Hudson County",125000,173000,2026-09-12,2026-09-12,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),"Vice President, Principal Solutions Architect, GenAI","Jersey City, Hudson County",261248.0,261248.0,2026-08-26,2026-09-12,Carrier,active
+New Posting,0000037808,MetLife,Lead Enterprise Infrastructure Engineer,"Grand Central, Manhattan",211847.77,211847.77,2026-09-11,2026-09-12,Carrier,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,"Senior Analyst, Strategy","New York City, New York",73500.0,85000.0,2026-08-18,2026-09-12,MGA/Broker,active
