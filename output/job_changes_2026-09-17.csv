@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000896159,Chubb Limited,"VP, Global Head of Digital Experience","New York City, New York",276069,276069,2026-09-16,2026-09-17,Carrier,active
+New Posting,0000896159,Chubb Limited,Global Head of DevOps Services,"Jersey City, Hudson County",336989.2,336989.2,2026-09-16,2026-09-17,Carrier,active
+New Posting,0000896159,Chubb Limited,Product Owner,"Jersey City, Hudson County",112200,162800,2026-09-12,2026-09-17,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,"Sr. Software Engineer, Digital Consumer","Summit Avenue, Hudson County",195372.81,195372.81,2026-09-08,2026-09-17,Carrier,active
