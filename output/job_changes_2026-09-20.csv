@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000896159,Chubb Limited,ServiceNow HR Business Analyst,"Chelsea and Clinton, Manhattan",145320.62,145320.62,2026-09-19,2026-09-20,Carrier,active
+New Posting,0000896159,Chubb Limited,Product Owner,"Jersey City, Hudson County",112200,162800,2026-09-12,2026-09-20,Carrier,active
+New Posting,0001268105,Arch Capital Group,"Manager, Data Engineer (Remote)","New York City, New York",177367.56,177367.56,2026-09-20,2026-09-20,Carrier/Reinsurer,active
+New Posting,0000947484,ARCH CAPITAL GROUP LTD.,"Manager, Data Engineer (Remote)","New York City, New York",177367.56,177367.56,2026-09-20,2026-09-20,Carrier,active
