@@ -1,0 +1,11 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),"2027 Early Careers: Analyst, Underwriting - United States, Multiple Locations","Jersey City, Hudson County",73297.93,73297.93,2026-09-23,2026-09-24,Carrier,active
+New Posting,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800,199200,2026-08-18,2026-09-24,Carrier,active
+New Posting,0000037808,MetLife,"AVP, HR Technology","Grand Central, Manhattan",169187.86,169187.86,2026-09-23,2026-09-24,Carrier,active
+New Posting,0000037808,MetLife,Senior Platform Engineer,"Grand Central, Manhattan",207428.75,207428.75,2026-09-23,2026-09-24,Carrier,active
+New Posting,0000037808,MetLife,Program Manager - Risk Technology,"Grand Central, Manhattan",194952.36,194952.36,2026-09-23,2026-09-24,Carrier,active
+New Posting,0000037808,MetLife,"Technology Product Manager, Workforce Data","Grand Central, Manhattan",187220.84,187220.84,2026-09-23,2026-09-24,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,"Manager, Event Operations & Venue Technology","Grand Central, Manhattan",163731.69,163731.69,2026-08-27,2026-09-24,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,Principal Streaming & Event Lead,"Grand Central, Manhattan",140702.97,140702.97,2026-08-27,2026-09-24,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,Senior Salesforce Developer,"Grand Central, Manhattan",182397.05,182397.05,2026-08-28,2026-09-24,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,Salesforce Developer,"Grand Central, Manhattan",147307.02,147307.02,2026-08-28,2026-09-24,Carrier,active
