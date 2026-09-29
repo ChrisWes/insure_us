@@ -1,0 +1,8 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),"Senior Underwriter, Financial Institutions, Financial Lines","Grand Central, Manhattan",126509.13,126509.13,2026-09-25,2026-09-29,Carrier,active
+New Posting,0000005272,AIG (American International Group),"Complex Claims Director, Excess","Grand Central, Manhattan",195116.97,195116.97,2026-09-24,2026-09-29,Carrier,active
+New Posting,0000005272,AIG (American International Group),"Complex Claims Director, Excess","Jersey City, Hudson County",156147.92,156147.92,2026-09-24,2026-09-29,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,"VP, Global Head of Digital Experience","New York City, New York",276069.0,276069.0,2026-09-16,2026-09-29,Carrier,active
+Disappeared,0000037808,MetLife,"Sr. Analyst, AI Billing & Data Intelligence","Grand Central, Manhattan",124687.55,124687.55,2026-08-20,2026-09-29,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,TBM Principal - Cost Transparency,"Grand Central, Manhattan",184899.95,184899.95,2026-09-08,2026-09-29,Carrier,active
+New Posting,0000062709,"MARSH & MCLENNAN COMPANIES, INC.",Full-Stack Engineer (Forward Deployed) - Digital Client Experience - Marsh,"Grand Central, Manhattan",188383.39,188383.39,2026-09-25,2026-09-29,MGA/Broker,active
