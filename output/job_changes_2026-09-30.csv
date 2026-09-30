@@ -1,0 +1,7 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Business Data Analyst,"Jersey City, Hudson County",101593.44,101593.44,2026-07-19,2026-09-30,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),"Complex Claims Director, Excess","Jersey City, Hudson County",156147.92,156147.92,2026-09-24,2026-09-30,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),"Complex Claims Director, Excess","Grand Central, Manhattan",195116.97,195116.97,2026-09-24,2026-09-30,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),"Senior Underwriter, Financial Institutions, Financial Lines","Grand Central, Manhattan",126509.13,126509.13,2026-09-25,2026-09-30,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,Product Owner,"Jersey City, Hudson County",112200.0,162800.0,2026-09-12,2026-09-30,Carrier,active
+Disappeared - Short-lived,0000062709,"MARSH & MCLENNAN COMPANIES, INC.",Full-Stack Engineer (Forward Deployed) - Digital Client Experience - Marsh,"Grand Central, Manhattan",188383.39,188383.39,2026-09-25,2026-09-30,MGA/Broker,active
