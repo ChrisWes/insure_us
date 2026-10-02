@@ -1,0 +1,6 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared,0000005272,AIG (American International Group),Business Data Analyst,"Jersey City, Hudson County",101593.44,101593.44,2026-07-19,2026-10-02,Carrier,active
+New Posting,0000011544,W.R. Berkley Corporation,High Value Home Risk Consultant,"Grand Central, Manhattan",183865.12,183865.12,2026-10-01,2026-10-02,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,"Senior Analyst, Strategy & Activation (Amazon)","New York City, New York",73500,85000,2026-10-01,2026-10-02,MGA/Broker,active
+New Posting,0000062709,"MARSH & MCLENNAN COMPANIES, INC.","Vice President, Analytics Models & Innovation","Grand Central, Manhattan",274096.22,274096.22,2026-10-01,2026-10-02,MGA/Broker,active
+New Posting,0001126328,PRINCIPAL FINANCIAL GROUP INC,"Assistant Director - Engineering, Asset Management Digital Experience","Grand Central, Manhattan",320367.84,320367.84,2026-10-01,2026-10-02,Carrier,active
