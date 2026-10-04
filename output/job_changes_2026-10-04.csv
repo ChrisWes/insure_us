@@ -1,0 +1,7 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),"2027 Early Careers: Analyst, Data Office: Data Engineering - United States, Multiple Locations","Five Corners, Hudson County",87622.12,87622.12,2026-10-03,2026-10-04,Carrier,active
+New Posting,0000005272,AIG (American International Group),"2027 Early Careers: Analyst, Data Office: Data Engineering - United States, Multiple Locations","Jersey City, Hudson County",70278.16,70278.16,2026-10-03,2026-10-04,Carrier,active
+Disappeared,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800.0,199200.0,2026-08-18,2026-10-04,Carrier,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,"Senior Analyst, Strategy & Activation (Amazon)","Grand Central, Manhattan",112324.42,112324.42,2026-09-30,2026-10-04,MGA/Broker,active
+New Posting,0000062709,"MARSH & MCLENNAN COMPANIES, INC.","Change Manager, Organizational Design and People Change","Grand Central, Manhattan",155995.8,155995.8,2026-10-03,2026-10-04,MGA/Broker,active
+Disappeared - Short-lived,0000062709,"MARSH & MCLENNAN COMPANIES, INC.","Vice President, Analytics Models & Innovation","Grand Central, Manhattan",274096.22,274096.22,2026-10-01,2026-10-04,MGA/Broker,active
