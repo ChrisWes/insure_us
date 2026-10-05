@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Business Data Analyst,"Jersey City, Hudson County",101593.44,101593.44,2026-07-19,2026-10-05,Carrier,active
+New Posting,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800,199200,2026-08-18,2026-10-05,Carrier,active
+New Posting,0000037808,MetLife,METx Global Technology Intern,"Grand Central, Manhattan",76768.05,76768.05,2026-10-04,2026-10-05,Carrier,active
+Disappeared,0000037808,MetLife,Lead Mainframe z/OS Db2 SRE,"Grand Central, Manhattan",148388.48,148388.48,2026-07-10,2026-10-05,Carrier,active
