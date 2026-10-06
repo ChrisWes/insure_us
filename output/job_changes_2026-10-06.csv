@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800.0,199200.0,2026-08-18,2026-10-06,Carrier,active
+New Posting,0000037808,MetLife,Agile Project Manager,"Grand Central, Manhattan",152667.98,152667.98,2026-10-05,2026-10-06,Carrier,active
+New Posting,0000062709,"MARSH & MCLENNAN COMPANIES, INC.","Vice President, Analytics Models & Innovation","Grand Central, Manhattan",274096.22,274096.22,2026-10-01,2026-10-06,MGA/Broker,active
+Disappeared - Short-lived,0000062709,"MARSH & MCLENNAN COMPANIES, INC.","Change Manager, Organizational Design and People Change","Grand Central, Manhattan",155995.8,155995.8,2026-10-03,2026-10-06,MGA/Broker,active
