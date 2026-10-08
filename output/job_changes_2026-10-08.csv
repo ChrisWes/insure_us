@@ -1,0 +1,13 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared,0000005272,AIG (American International Group),Business Data Analyst,"Jersey City, Hudson County",101593.44,101593.44,2026-07-19,2026-10-08,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),"2027 Early Careers: Analyst, Data Office: Data Engineering - United States, Multiple Locations","Grand Central, Manhattan",87817.04,87817.04,2026-10-02,2026-10-08,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),"2027 Early Careers: Analyst, Data Office: Data Engineering - United States, Multiple Locations","Five Corners, Hudson County",87622.12,87622.12,2026-10-03,2026-10-08,Carrier,active
+Disappeared - Short-lived,0000005272,AIG (American International Group),Senior Multinational Client Executive,"Grand Central, Manhattan",173737.03,173737.03,2026-10-06,2026-10-08,Carrier,active
+New Posting,0000896159,Chubb Limited,"Sr. Software Engineer, Digital Consumer","Jersey City, Hudson County",192531.03,192531.03,2026-10-07,2026-10-08,Carrier,active
+New Posting,0000896159,Chubb Limited,Senior Solution Architect,"Summit Avenue, Hudson County",255965.97,255965.97,2026-10-07,2026-10-08,Carrier,active
+Disappeared,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800.0,199200.0,2026-08-18,2026-10-08,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,Product Owner,"Jersey City, Hudson County",112200.0,162800.0,2026-09-12,2026-10-08,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,Media Solutions Senior Analyst,"New York City, New York",73500,85000,2026-07-30,2026-10-08,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"SVP, Client Solutions","New York City, New York",240000,270000,2026-05-19,2026-10-08,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"Senior Analyst, Retail Media Strategy & Activation","New York City, New York",73500,85000,2026-07-01,2026-10-08,MGA/Broker,active
+Disappeared - Short-lived,0000062709,"MARSH & MCLENNAN COMPANIES, INC.","Vice President, Analytics Models & Innovation","Grand Central, Manhattan",274096.22,274096.22,2026-10-01,2026-10-08,MGA/Broker,active
