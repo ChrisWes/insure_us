@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Business Data Analyst,"Jersey City, Hudson County",101593.44,101593.44,2026-07-19,2026-10-11,Carrier,active
+New Posting,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800,199200,2026-08-18,2026-10-11,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,Product Owner,"Jersey City, Hudson County",112200.0,162800.0,2026-09-12,2026-10-11,Carrier,active
+Disappeared,0000037808,MetLife,Small Business Sales Specialist,"Grand Central, Manhattan",86347.12,86347.12,2026-06-21,2026-10-11,Carrier,active
