@@ -1,0 +1,10 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Business Data Analyst,"Jersey City, Hudson County",101593.44,101593.44,2026-07-19,2026-10-15,Carrier,active
+New Posting,0000896159,Chubb Limited,Product Owner,"Jersey City, Hudson County",112200,162800,2026-09-12,2026-10-15,Carrier,active
+Disappeared,0000896159,Chubb Limited,"Manager, CX/UX and Visual Design, Renters","Jersey City, Hudson County",174000.0,200000.0,2026-08-30,2026-10-15,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,"Director, Activation","New York City, New York",140000,160000,2026-10-15,2026-10-15,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"Director, Strategy","New York City, New York",140000,160000,2026-10-15,2026-10-15,MGA/Broker,active
+Disappeared - Short-lived,0000062709,"MARSH & MCLENNAN COMPANIES, INC.",HR Transformation Consulting Associate,"Grand Central, Manhattan",75651.06,75651.06,2026-10-14,2026-10-15,MGA/Broker,active
+Disappeared - Short-lived,0000062709,"MARSH & MCLENNAN COMPANIES, INC.",Senior Project Manager,"Grand Central, Manhattan",151283.14,151283.14,2026-10-14,2026-10-15,MGA/Broker,active
+New Posting,0001126328,PRINCIPAL FINANCIAL GROUP INC,Senior Accountant (New York),"Grand Central, Manhattan",168837.44,168837.44,2026-10-14,2026-10-15,Carrier,active
+Disappeared - Short-lived,0001126328,PRINCIPAL FINANCIAL GROUP INC,"Assistant Director - Engineering, Asset Management Digital Experience","Grand Central, Manhattan",320367.84,320367.84,2026-10-01,2026-10-15,Carrier,active
