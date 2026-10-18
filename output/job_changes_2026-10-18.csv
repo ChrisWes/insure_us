@@ -1,0 +1,6 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared - Short-lived,0000005272,AIG (American International Group),Mass Tort and Complex Casualty - Senior Claims Adjuster,"Jersey City, Hudson County",72500.0,96700.0,2026-09-18,2026-10-18,Carrier,active
+Disappeared,0000896159,Chubb Limited,Product Owner,"Jersey City, Hudson County",112200.0,162800.0,2026-09-12,2026-10-18,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,Senior Platform Engineer,"Grand Central, Manhattan",207428.75,207428.75,2026-09-23,2026-10-18,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,"Technology Product Manager, Workforce Data","Grand Central, Manhattan",187220.84,187220.84,2026-09-23,2026-10-18,Carrier,active
+New Posting,0002040491,Ategrity Specialty Insurance Co Holdings,Finance Project Manager,"Manhattan, New York City",93917.18,93917.18,2026-10-06,2026-10-18,Carrier,active
