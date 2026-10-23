@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Senior Marine Complex Claims Adjuster,"Jersey City, Hudson County",95000,120000,2026-10-22,2026-10-23,Carrier,active
+Disappeared,0000005272,AIG (American International Group),Business Data Analyst,"Jersey City, Hudson County",101593.44,101593.44,2026-07-19,2026-10-23,Carrier,active
+Disappeared - Short-lived,0000037808,MetLife,Agile Project Manager,"Grand Central, Manhattan",152667.98,152667.98,2026-10-05,2026-10-23,Carrier,active
+New Posting,0001889539,"Corebridge Financial, Inc.",Annuities & Retirement Marketing Director (Hybrid),"Five Corners, Hudson County",137468.77,137468.77,2026-10-22,2026-10-23,Carrier,active
