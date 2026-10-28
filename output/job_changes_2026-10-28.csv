@@ -1,0 +1,3 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800.0,199200.0,2026-08-18,2026-10-28,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,"Analyst, Strategy","New York City, New York",58760,70491,2026-10-28,2026-10-28,MGA/Broker,active
