@@ -1,0 +1,12 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Business Data Analyst,"Jersey City, Hudson County",101593.44,101593.44,2026-07-19,2026-10-30,Carrier,active
+Disappeared,0000005272,AIG (American International Group),Senior Claims Analyst Severity,"Jersey City, Hudson County",72500.0,96700.0,2026-05-15,2026-10-30,Carrier,active
+Disappeared,0000005272,AIG (American International Group),"Senior Claims Examiner, International Casualty","Jersey City, Hudson County",73900.0,103500.0,2026-08-21,2026-10-30,Carrier,active
+New Posting,0000896159,Chubb Limited,Senior Solution Engineer,"Summit Avenue, Hudson County",152591.28,152591.28,2026-10-29,2026-10-30,Carrier,active
+New Posting,0000896159,Chubb Limited,Senior Software Engineer,"Summit Avenue, Hudson County",225066.03,225066.03,2026-10-29,2026-10-30,Carrier,active
+New Posting,0000896159,Chubb Limited,Senior Solution Engineer,"Jersey City, Hudson County",146000,213000,2026-10-29,2026-10-30,Carrier,active
+New Posting,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800,199200,2026-08-18,2026-10-30,Carrier,active
+New Posting,0000896159,Chubb Limited,Senior Software Engineer,"Jersey City, Hudson County",150000,205000,2026-10-29,2026-10-30,Carrier,active
+New Posting,0000037808,MetLife,Agile Project Manager,"Grand Central, Manhattan",152316.78,152316.78,2026-10-05,2026-10-30,Carrier,active
+Disappeared - Short-lived,0002040491,Ategrity Specialty Insurance Co Holdings,Finance Project Manager,"Manhattan, New York City",93917.18,93917.18,2026-10-28,2026-10-30,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,"Director, Strategy","New York City, New York",140000,160000,2026-10-30,2026-10-30,MGA/Broker,active
