@@ -1,0 +1,7 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000037808,MetLife,Small Business Analyst,"Grand Central, Manhattan",76116.68,76116.68,2026-10-31,2026-11-01,Carrier,active
+New Posting,0000037808,MetLife,Salesforce Developer,"Grand Central, Manhattan",147332.17,147332.17,2026-10-31,2026-11-01,Carrier,active
+Disappeared,0000037808,MetLife,"Senior Developer, Sales Technology","Grand Central, Manhattan",161898.1,161898.1,2026-08-28,2026-11-01,Carrier,active
+Disappeared,0000037808,MetLife,"HR Digital Solutions Advisor, Absence & ER","Grand Central, Manhattan",174706.84,174706.84,2026-09-25,2026-11-01,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,"Associate Director, Activation","New York City, New York",117000,130000,2026-11-01,2026-11-01,MGA/Broker,active
+Disappeared,0001126328,PRINCIPAL FINANCIAL GROUP INC,Intern - Private Infrastructure (Summer 2027),"Grand Central, Manhattan",128018.08,128018.08,2026-09-25,2026-11-01,Carrier,active
