@@ -1,0 +1,4 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Senior Claims Adjuster - Casualty Coverage and Mass Tort,"Jersey City, Hudson County",84000,111500,2026-08-26,2026-11-05,Carrier,active
+New Posting,0000896159,Chubb Limited,"Global Chapter Lead, Marketing Technologies","Summit Avenue, Hudson County",181379.53,181379.53,2026-11-04,2026-11-05,Carrier,active
+Disappeared,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800.0,199200.0,2026-08-18,2026-11-05,Carrier,active
