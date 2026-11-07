@@ -1,0 +1,10 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Business Analyst - Service Delivery,"Jersey City, Hudson County",96000,129000,2026-11-07,2026-11-07,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,Senior Solution Engineer,"Summit Avenue, Hudson County",152591.28,152591.28,2026-10-29,2026-11-07,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,Senior Software Engineer,"Summit Avenue, Hudson County",225066.03,225066.03,2026-10-29,2026-11-07,Carrier,active
+New Posting,0002040491,Ategrity Specialty Insurance Co Holdings,Finance Project Manager,"Manhattan, New York City",93917.18,93917.18,2026-10-28,2026-11-07,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,Media Solutions Senior Analyst,"New York City, New York",73500,85000,2026-11-07,2026-11-07,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"Director, Activation","New York City, New York",140000,160000,2026-11-06,2026-11-07,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"Director, Strategy","New York City, New York",189002.06,189002.06,2026-10-29,2026-11-07,MGA/Broker,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,"Analyst, Strategy","New York City, New York",58760.0,70491.0,2026-10-28,2026-11-07,MGA/Broker,active
+New Posting,0000062709,"MARSH & MCLENNAN COMPANIES, INC.",Capability Leader - AI & Digital,"New York City, New York",116138.37,116138.37,2026-10-29,2026-11-07,MGA/Broker,active
