@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),"Vice President, Claims Technical & Technology Lead","Jersey City, Hudson County",126000,171000,2026-11-08,2026-11-08,Carrier,active
+New Posting,0000896159,Chubb Limited,"AVP, Global Transformation Programs Lead","Jersey City, Hudson County",136800,199200,2026-08-18,2026-11-08,Carrier,active
+New Posting,0000896159,Chubb Limited,"VP, Digital Technology (Consumer)","Jersey City, Hudson County",200000,230000,2026-11-08,2026-11-08,Carrier,active
+New Posting,0000896159,Chubb Limited,Data Engineer,"Jersey City, Hudson County",82000,92000,2026-11-08,2026-11-08,Carrier,active
