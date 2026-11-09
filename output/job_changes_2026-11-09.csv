@@ -1,0 +1,6 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000896159,Chubb Limited,"VP, Digital Technology (Consumer)","Summit Avenue, Hudson County",282564.3,282564.3,2026-11-08,2026-11-09,Carrier,active
+New Posting,0000896159,Chubb Limited,Data Engineer,"Summit Avenue, Hudson County",180010.08,180010.08,2026-11-08,2026-11-09,Carrier,active
+Disappeared,0000896159,Chubb Limited,"VP, Global Transformation Programs","Jersey City, Hudson County",176400.0,255600.0,2026-05-08,2026-11-09,Carrier,active
+Disappeared,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800.0,199200.0,2026-08-18,2026-11-09,Carrier,active
+Disappeared - Short-lived,0002040491,Ategrity Specialty Insurance Co Holdings,Finance Project Manager,"Manhattan, New York City",93917.18,93917.18,2026-10-28,2026-11-09,Carrier,active
