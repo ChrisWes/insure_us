@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared - Short-lived,0000896159,Chubb Limited,"SVP, Trade Sanctions and AML Global Compliance Program Manager","Chelsea and Clinton, Manhattan",272609.25,272609.25,2026-11-01,2026-11-10,Carrier,active
+Disappeared,0000037808,MetLife,Senior .NET Engineer (Azure/ Kubernetes),"Grand Central, Manhattan",176533.75,176533.75,2026-08-07,2026-11-10,Carrier,active
+New Posting,0002040491,Ategrity Specialty Insurance Co Holdings,Finance Project Manager,"Manhattan, New York City",93917.18,93917.18,2026-10-28,2026-11-10,Carrier,active
+Disappeared,0001126328,PRINCIPAL FINANCIAL GROUP INC,Senior Broker-Dealer Accountant,"Wall Street, Manhattan",110000.0,165000.0,2026-09-18,2026-11-10,Carrier,active
