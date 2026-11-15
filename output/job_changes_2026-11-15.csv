@@ -1,0 +1,6 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000896159,Chubb Limited,"Technical Product Owner, Direct Billing Systems","Summit Avenue, Hudson County",95438.93,95438.93,2026-11-14,2026-11-15,Carrier,active
+New Posting,0000896159,Chubb Limited,Senior Software Engineer,"Summit Avenue, Hudson County",223927.27,223927.27,2026-10-29,2026-11-15,Carrier,active
+New Posting,0000896159,Chubb Limited,"Technical Product Owner, Direct Billing Systems","Jersey City, Hudson County",140000,160000,2026-11-14,2026-11-15,Carrier,active
+New Posting,0000896159,Chubb Limited,Quality Engineering Lead,"Jersey City, Hudson County",160000,190000,2026-11-14,2026-11-15,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,Data Engineer,"Jersey City, Hudson County",82000.0,92000.0,2026-11-08,2026-11-15,Carrier,active
