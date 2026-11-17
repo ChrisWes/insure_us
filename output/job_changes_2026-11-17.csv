@@ -1,0 +1,11 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared,0000896159,Chubb Limited,"Associate, Global Transformation Programs","Jersey City, Hudson County",136800.0,199200.0,2026-08-18,2026-11-17,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,"VP, Digital Technology (Consumer)","Summit Avenue, Hudson County",282564.3,282564.3,2026-11-08,2026-11-17,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,Data Engineer,"Summit Avenue, Hudson County",180010.08,180010.08,2026-11-08,2026-11-17,Carrier,active
+Disappeared - Short-lived,0001214816,AXIS CAPITAL HOLDINGS LTD,Chief of Staff to Group COO: Strategy & Execution,"Grand Central, Manhattan",156003.53,156003.53,2026-11-11,2026-11-17,Carrier,active
+Disappeared - Short-lived,0001214816,AXIS CAPITAL HOLDINGS LTD,"Finance Transformation Leader: Strategy, Data & AI","Grand Central, Manhattan",142990.02,142990.02,2026-11-12,2026-11-17,Carrier,active
+Disappeared - Short-lived,0001214816,AXIS CAPITAL HOLDINGS LTD,Finance Transformation Leader: Strategy & Analytics,"Grand Central, Manhattan",116245.52,116245.52,2026-11-12,2026-11-17,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,Data Strategy & Analytics Senior Analyst,"New York City, New York",73500,85000,2026-11-01,2026-11-17,MGA/Broker,active
+New Posting,0002000208,Kepler Group Ltd,"SVP, Client Solutions","New York City, New York",240000,270000,2026-05-19,2026-11-17,MGA/Broker,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,"SVP, Client Solutions","Grand Central, Manhattan",188302.56,188302.56,2026-11-11,2026-11-17,MGA/Broker,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,Chief Client Solutions Officer — Remote Growth & Innovation,"Grand Central, Manhattan",165802.84,165802.84,2026-11-11,2026-11-17,MGA/Broker,active
