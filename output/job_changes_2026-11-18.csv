@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared,0000005272,AIG (American International Group),Lead Business Analyst: Data Office - Actuarial Data & Tools,"Jersey City, Hudson County",130000.0,160000.0,2026-07-05,2026-11-18,Carrier,active
+New Posting,0000896159,Chubb Limited,"AVP, Global Transformation Programs Lead","Jersey City, Hudson County",136800,199200,2026-08-18,2026-11-18,Carrier,active
+Disappeared,0002000208,Kepler Group Ltd,"SVP, Client Solutions","New York City, New York",240000.0,270000.0,2026-05-19,2026-11-18,MGA/Broker,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,Media Solutions Senior Analyst,"New York City, New York",73500.0,85000.0,2026-11-07,2026-11-18,MGA/Broker,active
