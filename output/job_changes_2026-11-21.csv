@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000005272,AIG (American International Group),Senior Marine Complex Claims Adjuster,"Jersey City, Hudson County",95000,120000,2026-10-22,2026-11-21,Carrier,active
+New Posting,0000037808,MetLife,"AVP, Sales Technology Lead","Grand Central, Manhattan",163811.34,163811.34,2026-11-20,2026-11-21,Carrier,active
+New Posting,0001889539,"Corebridge Financial, Inc.",Senior Project Manager,"Jersey City, Hudson County",60000,60000,2026-11-21,2026-11-21,Carrier,active
+New Posting,0001889539,"Corebridge Financial, Inc.",Business Analyst,"Jersey City, Hudson County",70000,100000,2026-11-21,2026-11-21,Carrier,active
