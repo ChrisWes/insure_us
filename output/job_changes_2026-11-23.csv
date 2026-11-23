@@ -1,0 +1,8 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared - Short-lived,0000896159,Chubb Limited,Senior Solution Engineer,"Jersey City, Hudson County",146000.0,213000.0,2026-10-29,2026-11-23,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,Senior Software Engineer,"Summit Avenue, Hudson County",225066.03,225066.03,2026-10-29,2026-11-23,Carrier,active
+Disappeared - Short-lived,0000896159,Chubb Limited,"Technical Product Owner, Direct Billing Systems","Summit Avenue, Hudson County",95438.93,95438.93,2026-11-14,2026-11-23,Carrier,active
+New Posting,0000037808,MetLife,MIM - Executive Business Analyst,"Grand Central, Manhattan",103784.77,103784.77,2026-11-23,2026-11-23,Carrier,active
+New Posting,0000037808,MetLife,Agile Project Manager,"Grand Central, Manhattan",156864.94,156864.94,2026-10-05,2026-11-23,Carrier,active
+Disappeared,0000037808,MetLife,"AI Principal, Strategy & Transformation","Grand Central, Manhattan",222514.17,222514.17,2026-08-27,2026-11-23,Carrier,active
+Disappeared,0000037808,MetLife,"Director, Head of Compliance Technology","Grand Central, Manhattan",355626.8,355626.8,2026-09-06,2026-11-23,Carrier,active
