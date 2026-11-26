@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000011544,W.R. Berkley Corporation,Risk Management Consultant,"Grand Central, Manhattan",195654.55,195654.55,2026-11-25,2026-11-26,Carrier,active
+Disappeared,0000011544,W.R. Berkley Corporation,High Value Home Risk Consultant,"Grand Central, Manhattan",183865.12,183865.12,2026-10-01,2026-11-26,Carrier,active
+Disappeared - Short-lived,0002040491,Ategrity Specialty Insurance Co Holdings,Finance Project Manager,"Manhattan, New York City",93917.18,93917.18,2026-10-28,2026-11-26,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,"Director, Data Strategy & Analytics","New York City, New York",140000,160000,2026-11-25,2026-11-26,MGA/Broker,active
