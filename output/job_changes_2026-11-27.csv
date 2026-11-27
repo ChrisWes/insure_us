@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+Disappeared,0000037808,MetLife,Agile Project Manager,"Grand Central, Manhattan",152667.98,152667.98,2026-10-05,2026-11-27,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,"Analyst, Strategy","New York City, New York",51450.69,51450.69,2026-11-26,2026-11-27,MGA/Broker,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,"Analyst, Strategy","New York City, New York",58760.0,70491.0,2026-11-25,2026-11-27,MGA/Broker,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,"Director, Data Strategy & Analytics","New York City, New York",140000.0,160000.0,2026-11-25,2026-11-27,MGA/Broker,active
