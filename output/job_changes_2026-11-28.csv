@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,company_type,monitoring_status
+New Posting,0000896159,Chubb Limited,"AVP, Global Transformation Programs Lead","Jersey City, Hudson County",136800,199200,2026-08-18,2026-11-28,Carrier,active
+New Posting,0002000208,Kepler Group Ltd,"Director, Data Strategy & Analytics","New York City, New York",140000,160000,2026-11-25,2026-11-28,MGA/Broker,active
+Disappeared - Short-lived,0002000208,Kepler Group Ltd,"Analyst, Strategy","New York City, New York",51450.69,51450.69,2026-11-26,2026-11-28,MGA/Broker,active
+New Posting,0000062709,"MARSH & MCLENNAN COMPANIES, INC.",Capability Leader - AI & Digital,"New York City, New York",112356.67,112356.67,2026-10-29,2026-11-28,MGA/Broker,active
